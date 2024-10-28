@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Element } from "react-scroll";
+import AboutSection from "./components/AboutSection/AboutSection";
+import AppMenu from "./components/AppMenu/AppMenu";
+import EventSection from "./components/EventSection/EventSection";
+import HomeSection from "./components/HomeSection/HomeSection";
+import MusicSection from "./components/MusicSection/MusicSection";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>
+        <Element name="home" className="section section-home">
+          <HomeSection />
+        </Element>
+
+        <Element name="event" className="section section-event">
+          <EventSection />
+        </Element>
+
+        <Element name="music" className="section section-music">
+          <MusicSection />
+        </Element>
+
+        <Element name="about" className="section section-about">
+          <AboutSection />
+        </Element>
+      </div>
+      <AppMenu />
     </div>
   );
 }

@@ -1,38 +1,27 @@
-.App {
-  text-align: center;
+/* Full-screen section styling */
+.section {
+  height: 100vh; /* Full viewport height */
+  display: flex; /* Flexbox for centering */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  font-size: 2rem; /* Larger font for content */
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Optional: Different background colors for each section */
+.section-home {
+  background-color: #ffeb3b; /* Light yellow for Home section */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.section-event {
+  background-color: #4caf50; /* Green for Event section */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.section-music {
+  background-color: #2196f3; /* Blue for Music section */
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.section-about {
+  background-color: #ff5722; /* Orange for About section */
 }
