@@ -1,14 +1,18 @@
-import { Card } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import useStyles from "./AboutSection.styles";
+import GACard from "../../general/GACard/GACard";
 
 const AboutSection = () => {
-  const classes = useStyles();
-
   return (
-    <Grid container spacing={2} columns={16}>
-      <Grid size={8}>
-        <Card className={classes.aboutCard}>About</Card>
+    <Grid container spacing={2} columns={12}>
+      <Grid size={6}>
+        <GACard>
+          AboutAboutAboutAboutAboutAboutAboutAboutAboutAboutAboutAboutAboutAbout
+        </GACard>
+      </Grid>
+      <Grid size={6}>
+        <GACard>
+          AboutAboutAboutAboutAboutAboutAboutAboutAboutAboutAboutAboutAboutAbout
+        </GACard>
       </Grid>
     </Grid>
   );

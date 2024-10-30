@@ -1,19 +1,17 @@
 import Grid from "@mui/material/Grid2";
-import useStyles from "./EventSection.styles";
-import { Card } from "@mui/material";
 import EventStepper from "./components/EventStepper/EventStepper";
+import GACard from "../../general/GACard/GACard";
 
 const EventSection = () => {
-  const classes = useStyles();
   return (
     <Grid container spacing={2} columns={12}>
       <Grid size={6}>
-        <Card className={classes.eventCard}>
+        <GACard>
           <img alt="" src="GRN8.png" width="1000" height="600" />
-        </Card>
+        </GACard>
       </Grid>
       <Grid size={6}>
-        <Card className={classes.eventCard}>
+        <GACard>
           <Grid container spacing={6} columns={6} sx={{ height: "300px" }}>
             <Grid size={3} sx={{ width: 400 }}>
               <img
@@ -25,7 +23,7 @@ const EventSection = () => {
               <EventStepper />
             </Grid>
           </Grid>
-        </Card>
+        </GACard>
       </Grid>
     </Grid>
   );
