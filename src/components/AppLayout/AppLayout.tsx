@@ -1,8 +1,8 @@
-import AboutSection from "../AboutSection/AboutSection";
+import AboutSection from "../Sections/AboutSection/AboutSection";
 import AppMenu from "../AppNav/AppNav";
-import EventSection from "../EventSection/EventSection";
-import HomeSection from "../HomeSection/HomeSection";
-import MusicSection from "../MusicSection/MusicSection";
+import EventSection from "../Sections/EventSection/EventSection";
+import HomeSection from "../Sections/HomeSection/HomeSection";
+import MusicSection from "../Sections/MusicSection/MusicSection";
 import { Element } from "react-scroll";
 import useStyles from "./AppLayout.styles";
 

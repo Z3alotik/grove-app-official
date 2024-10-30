@@ -40,9 +40,6 @@ const AppNav = () => {
         </Link>
       </div>
       <div className={classes.menu}>
-        {/* <IconButton size="large" aria-label="info" onClick={hand}>
-          <MenuIcon />
-        </IconButton> */}
         <AppMenu
           onOpenMenu={handleOpenMenu}
           onCloseMenu={handleCloseMenu}

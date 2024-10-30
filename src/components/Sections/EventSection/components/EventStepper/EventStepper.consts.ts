@@ -12,6 +12,6 @@ export const steps = [
   {
     label: "Doraž a bav se",
     description: `V tomto kroku se už musíš jen těšit a dorazit v daném datu konání na místo. 
-    Děkujeme, že si přeješ aby tato akce dále fungovala, bez tebe by to nešlo uskutečnit! Těšíme se na tebe ! Team Grove `,
+    Děkujeme, bez tebe by Grove Night neexistoval! Těšíme se na tebe.`,
   },
 ];
