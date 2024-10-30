@@ -1,0 +1,47 @@
+import AboutSection from "../AboutSection/AboutSection";
+import AppMenu from "../AppMenu/AppMenu";
+import EventSection from "../EventSection/EventSection";
+import HomeSection from "../HomeSection/HomeSection";
+import MusicSection from "../MusicSection/MusicSection";
+import { Element } from "react-scroll";
+import useStyles from "./AppLayout.styles";
+
+const AppLayout = () => {
+  const classes = useStyles();
+  return (
+    <div className={classes.app}>
+      <div>
+        <Element
+          name="home"
+          className={` ${classes.section} ${classes.sectionHome}`}
+        >
+          <HomeSection />
+        </Element>
+
+        <Element
+          name="event"
+          className={` ${classes.section} ${classes.sectionEvent}`}
+        >
+          <EventSection />
+        </Element>
+
+        <Element
+          name="music"
+          className={` ${classes.section} ${classes.sectionMusic}`}
+        >
+          <MusicSection />
+        </Element>
+
+        <Element
+          name="about"
+          className={` ${classes.section} ${classes.sectionAbout}`}
+        >
+          <AboutSection />
+        </Element>
+      </div>
+      <AppMenu />
+    </div>
+  );
+};
+
+export default AppLayout;

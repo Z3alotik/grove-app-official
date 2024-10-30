@@ -3,11 +3,11 @@ import HomeIcon from "@mui/icons-material/Home";
 import EventIcon from "@mui/icons-material/Event";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import InfoIcon from "@mui/icons-material/Info";
-import SettingsIcon from "@mui/icons-material/Settings";
-import useStyles from "./AppMenu.styles";
+import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-scroll";
 import useAppMenu from "./useAppMenu";
 import Settings from "./components/Settings/Settings";
+import useStyles from "./AppMenu.styles";
 
 const AppMenu = () => {
   const classes = useStyles();
@@ -41,9 +41,9 @@ const AppMenu = () => {
           </IconButton>
         </Link>
       </div>
-      <div className={classes.account}>
+      <div className={classes.settings}>
         <IconButton size="large" aria-label="info" onClick={handleOpenSettings}>
-          <SettingsIcon />
+          <MenuIcon />
         </IconButton>
         <Settings
           openSettings={openSettings}

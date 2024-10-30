@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     margin: "20px",
   },
-  account: {
+  settings: {
     position: "fixed",
     bottom: 0,
     right: 0,
