@@ -1,5 +1,5 @@
 import AboutSection from "../AboutSection/AboutSection";
-import AppMenu from "../AppMenu/AppMenu";
+import AppMenu from "../AppNav/AppNav";
 import EventSection from "../EventSection/EventSection";
 import HomeSection from "../HomeSection/HomeSection";
 import MusicSection from "../MusicSection/MusicSection";

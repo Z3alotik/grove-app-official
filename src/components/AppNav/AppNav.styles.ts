@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     margin: "20px",
   },
-  settings: {
+  menu: {
     position: "fixed",
     bottom: 0,
     right: 0,

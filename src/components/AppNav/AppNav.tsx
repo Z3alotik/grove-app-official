@@ -3,16 +3,14 @@ import HomeIcon from "@mui/icons-material/Home";
 import EventIcon from "@mui/icons-material/Event";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import InfoIcon from "@mui/icons-material/Info";
-import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-scroll";
-import useAppMenu from "./useAppMenu";
-import Settings from "./components/Settings/Settings";
-import useStyles from "./AppMenu.styles";
+import useStyles from "./AppNav.styles";
+import AppMenu from "./components/AppMenu/AppMenu";
+import useAppNav from "./useAppNav";
 
-const AppMenu = () => {
+const AppNav = () => {
   const classes = useStyles();
-  const { handleCloseSettings, handleOpenSettings, openSettings } =
-    useAppMenu();
+  const { handleCloseMenu, handleOpenMenu, openMenu } = useAppNav();
 
   return (
     <>
@@ -41,17 +39,18 @@ const AppMenu = () => {
           </IconButton>
         </Link>
       </div>
-      <div className={classes.settings}>
-        <IconButton size="large" aria-label="info" onClick={handleOpenSettings}>
+      <div className={classes.menu}>
+        {/* <IconButton size="large" aria-label="info" onClick={hand}>
           <MenuIcon />
-        </IconButton>
-        <Settings
-          openSettings={openSettings}
-          onCloseSettings={handleCloseSettings}
+        </IconButton> */}
+        <AppMenu
+          onOpenMenu={handleOpenMenu}
+          onCloseMenu={handleCloseMenu}
+          openMenu={openMenu}
         />
       </div>
     </>
   );
 };
 
-export default AppMenu;
+export default AppNav;
