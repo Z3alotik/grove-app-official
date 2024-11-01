@@ -15,36 +15,39 @@ const AppNav = () => {
   return (
     <>
       <div className={classes.navigation}>
-        <Link to="home" smooth={true} duration={500}>
-          <IconButton size="large" aria-label="home">
-            <HomeIcon />
-          </IconButton>
-        </Link>
+        <div className={classes.navMenu}>
+          <Link to="home" smooth={true} duration={500}>
+            <IconButton className={classes.iconButton} aria-label="home">
+              <HomeIcon />
+            </IconButton>
+          </Link>
 
-        <Link to="event" smooth={true} duration={500}>
-          <IconButton size="large" aria-label="event">
-            <EventIcon />
-          </IconButton>
-        </Link>
+          <Link to="event" smooth={true} duration={500}>
+            <IconButton className={classes.iconButton} aria-label="event">
+              <EventIcon />
+            </IconButton>
+          </Link>
 
-        <Link to="music" smooth={true} duration={500}>
-          <IconButton size="large" aria-label="music">
-            <MusicNoteIcon />
-          </IconButton>
-        </Link>
+          <Link to="music" smooth={true} duration={500}>
+            <IconButton className={classes.iconButton} aria-label="music">
+              <MusicNoteIcon />
+            </IconButton>
+          </Link>
 
-        <Link to="about" smooth={true} duration={500}>
-          <IconButton size="large" aria-label="info">
-            <InfoIcon />
-          </IconButton>
-        </Link>
-      </div>
-      <div className={classes.menu}>
-        <AppMenu
-          onOpenMenu={handleOpenMenu}
-          onCloseMenu={handleCloseMenu}
-          openMenu={openMenu}
-        />
+          <Link to="about" smooth={true} duration={500}>
+            <IconButton className={classes.iconButton} aria-label="info">
+              <InfoIcon />
+            </IconButton>
+          </Link>
+        </div>
+
+        <div className={classes.menu}>
+          <AppMenu
+            onOpenMenu={handleOpenMenu}
+            onCloseMenu={handleCloseMenu}
+            openMenu={openMenu}
+          />
+        </div>
       </div>
     </>
   );

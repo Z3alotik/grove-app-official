@@ -13,7 +13,7 @@ const AppLayout = () => {
       <div>
         <Element
           name="home"
-          className={` ${classes.section} ${classes.sectionHome}`}
+          className={` ${classes.section} ${classes.sectionHome} `}
         >
           <HomeSection />
         </Element>

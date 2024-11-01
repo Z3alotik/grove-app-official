@@ -11,10 +11,13 @@ const useStyles = makeStyles(() => ({
     boxSizing: "border-box",
   },
   sectionHome: {
-    backgroundColor: "#f57c00",
+    background: `url(
+      "./digital-art-dark-cosmic-night-sky.png"
+    )`,
+    backgroundSize: "cover",
   },
   sectionEvent: {
-    backgroundColor: "#ff9800",
+    backgroundColor: "#fb8c00",
     display: "block",
   },
   sectionMusic: {

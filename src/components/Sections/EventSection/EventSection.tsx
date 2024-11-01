@@ -4,10 +4,10 @@ import GACard from "../../general/GACard/GACard";
 
 const EventSection = () => {
   return (
-    <Grid container spacing={2} columns={12}>
+    <Grid sx={{ padding: "100px" }} container spacing={2} columns={12}>
       <Grid size={6}>
         <GACard>
-          <img alt="" src="GRN8.png" width="1000" height="600" />
+          <img alt="" src="GRN8.png" width="1100px" height="650px" />
         </GACard>
       </Grid>
       <Grid size={6}>

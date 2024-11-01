@@ -4,13 +4,13 @@ const HomeSection = () => {
   const classes = useStyles();
 
   return (
-    <div>
-      <h1 className={classes.title}>Welcome to Grove Night official website</h1>
+    <div className={classes.titleDiv}>
+      <h1 className={classes.title}>
+        <span>Grove</span>
+        <span>Night</span>
+      </h1>
 
-      <p className={classes.p}>
-        Here you can find anything about upcoming events, music that we play and
-        more ...
-      </p>
+      <p className={classes.p}>Small but uncommon dance party ...</p>
     </div>
   );
 };

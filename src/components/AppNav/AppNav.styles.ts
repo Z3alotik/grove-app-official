@@ -10,13 +10,25 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     margin: "20px",
   },
+  navMenu: {
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    borderRadius: "30px",
+  },
   menu: {
     position: "fixed",
     bottom: 0,
     right: 0,
     display: "flex",
     justifyContent: "center",
-    margin: "20px",
+    margin: "10px",
+  },
+  iconButton: {
+    width: 60,
+    height: 60,
+    "& svg": {
+      fontSize: "2rem",
+      color: "white",
+    },
   },
 }));
 
