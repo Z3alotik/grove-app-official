@@ -22,6 +22,12 @@ const AppNav = () => {
             </IconButton>
           </Link>
 
+          <Link to="about" smooth={true} duration={500}>
+            <IconButton className={classes.iconButton} aria-label="info">
+              <InfoIcon />
+            </IconButton>
+          </Link>
+
           <Link to="event" smooth={true} duration={500}>
             <IconButton className={classes.iconButton} aria-label="event">
               <EventIcon />
@@ -31,12 +37,6 @@ const AppNav = () => {
           <Link to="music" smooth={true} duration={500}>
             <IconButton className={classes.iconButton} aria-label="music">
               <MusicNoteIcon />
-            </IconButton>
-          </Link>
-
-          <Link to="about" smooth={true} duration={500}>
-            <IconButton className={classes.iconButton} aria-label="info">
-              <InfoIcon />
             </IconButton>
           </Link>
         </div>

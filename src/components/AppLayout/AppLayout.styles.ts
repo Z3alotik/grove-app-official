@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#ffb74d",
   },
   sectionAbout: {
-    backgroundColor: "#ffe0b2",
+    backgroundColor: "#0c141e",
   },
   app: {
     overflowX: "hidden",

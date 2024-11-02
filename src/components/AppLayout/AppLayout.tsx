@@ -19,6 +19,13 @@ const AppLayout = () => {
         </Element>
 
         <Element
+          name="about"
+          className={` ${classes.section} ${classes.sectionAbout}`}
+        >
+          <AboutSection />
+        </Element>
+
+        <Element
           name="event"
           className={` ${classes.section} ${classes.sectionEvent}`}
         >
@@ -30,13 +37,6 @@ const AppLayout = () => {
           className={` ${classes.section} ${classes.sectionMusic}`}
         >
           <MusicSection />
-        </Element>
-
-        <Element
-          name="about"
-          className={` ${classes.section} ${classes.sectionAbout}`}
-        >
-          <AboutSection />
         </Element>
       </div>
       <AppMenu />

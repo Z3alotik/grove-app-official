@@ -1,5 +1,4 @@
 import Grid from "@mui/material/Grid2";
-import EventStepper from "./components/EventStepper/EventStepper";
 import GACard from "../../general/GACard/GACard";
 
 const EventSection = () => {
@@ -18,9 +17,6 @@ const EventSection = () => {
                 alt=""
                 src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
               />
-            </Grid>
-            <Grid size={3} sx={{ width: 400 }}>
-              <EventStepper />
             </Grid>
           </Grid>
         </GACard>

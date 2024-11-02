@@ -1,16 +1,21 @@
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles(() => ({
-  aboutCard: {
-    margin: "20px",
-    height: "100vh",
-    width: "100vh",
+  aboutTitle: {
+    fontSize: "6rem",
+    color: "white",
+    fontFamily: "Bebas Neue",
+    marginLeft: 100,
+    marginTop: 0,
+  },
+  aboutText: {
+    color: "white",
+    fontFamily: "Teko",
+  },
+  wrapperGrid: {
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: "2rem",
-    backgroundColor: "rgba(240, 240, 240, 0.4) !important",
-    borderRadius: "10px !important",
+    flexWrap: "wrap",
+    height: "80",
   },
 }));
 

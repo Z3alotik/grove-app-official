@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
     },
   },
   p: {
-    fontFamily: "monospace",
+    fontFamily: "Permanent Marker",
     fontStyle: "italic",
     fontSize: "large",
     color: "white",
