@@ -2,7 +2,7 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles(() => ({
   title: {
-    fontSize: "12rem",
+    fontSize: "8rem",
     color: "white",
     fontFamily: "Bebas Neue",
     margin: 0,
@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
   p: {
     fontFamily: "Permanent Marker",
     fontStyle: "italic",
-    fontSize: "large",
+    fontSize: "1rem",
     color: "white",
   },
   background: {

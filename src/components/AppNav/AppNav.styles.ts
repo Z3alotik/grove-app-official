@@ -23,10 +23,10 @@ const useStyles = makeStyles((theme) => ({
     margin: "10px",
   },
   iconButton: {
-    width: 60,
-    height: 60,
+    width: 40,
+    height: 40,
     "& svg": {
-      fontSize: "2rem",
+      fontSize: "1.3rem",
       color: "white",
     },
   },

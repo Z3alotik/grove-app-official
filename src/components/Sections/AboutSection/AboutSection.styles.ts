@@ -2,7 +2,7 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles(() => ({
   aboutTitle: {
-    fontSize: "6rem",
+    fontSize: "4rem",
     color: "white",
     fontFamily: "Bebas Neue",
     marginLeft: 100,
@@ -11,11 +11,13 @@ const useStyles = makeStyles(() => ({
   aboutText: {
     color: "white",
     fontFamily: "Teko",
+    fontSize: "1.5rem",
   },
   wrapperGrid: {
     display: "flex",
     flexWrap: "wrap",
-    height: "80",
+    height: "80vh",
+    overflow: "auto",
   },
 }));
 
