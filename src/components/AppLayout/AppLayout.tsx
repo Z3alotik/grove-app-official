@@ -5,6 +5,7 @@ import HomeSection from "../Sections/HomeSection/HomeSection";
 import MusicSection from "../Sections/MusicSection/MusicSection";
 import { Element } from "react-scroll";
 import useStyles from "./AppLayout.styles";
+import RulesSection from "../Sections/RulesSection/RulesSection";
 
 const AppLayout = () => {
   const classes = useStyles();
@@ -37,6 +38,13 @@ const AppLayout = () => {
           className={` ${classes.section} ${classes.sectionMusic}`}
         >
           <MusicSection />
+        </Element>
+
+        <Element
+          name="rules"
+          className={` ${classes.section} ${classes.sectionRules}`}
+        >
+          <RulesSection />
         </Element>
       </div>
       <AppMenu />

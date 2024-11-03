@@ -4,25 +4,28 @@ const useStyles = makeStyles(() => ({
   stepLabel: {
     color: "white",
     "& .MuiStepLabel-label": {
-      fontFamily: "monospace",
+      fontFamily: "Permanent Marker",
       fontSize: "1.3rem",
       color: "grey",
     },
     "& .MuiStepLabel-label.Mui-active": {
-      fontFamily: "monospace",
+      fontFamily: "Permanent Marker",
       fontSize: "1.3rem",
       color: "white",
     },
     "& .MuiStepLabel-label.Mui-completed": {
-      fontFamily: "monospace",
+      fontFamily: "Permanent Marker",
       fontSize: "1.3rem",
       color: "white",
     },
   },
   stepIcon: {
-    "& .MuiStepLabel-iconContainer": {
+    "& .MuiStepIcon-root": {
       fontSize: "1.8rem",
-      backgroundColor: "green",
+      fill: "white",
+    },
+    "& .MuiStepIcon-text": {
+      fill: "black",
     },
   },
 }));

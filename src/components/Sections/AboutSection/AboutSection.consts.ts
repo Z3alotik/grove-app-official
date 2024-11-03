@@ -13,5 +13,5 @@ export const aboutContent = {
             je ti k dispozici po celý večer. Veškeré informace a novinky ohledně
             aktuálních akcí najdeš v sekci Události níže. Pro informace
             ohledně hudby nebo pravidel naší akce navštiv sekce Hudba a Pravidla
-            akce`,
+            akce.`,
 };

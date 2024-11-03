@@ -16,14 +16,17 @@ const useStyles = makeStyles(() => ({
     )`,
     backgroundSize: "cover",
   },
+  sectionAbout: {
+    backgroundColor: "#0c141e",
+  },
   sectionEvent: {
-    backgroundColor: "#fb8c00",
+    backgroundColor: "#131d24",
     display: "block",
   },
   sectionMusic: {
-    backgroundColor: "#ffb74d",
+    backgroundColor: "#1a2832",
   },
-  sectionAbout: {
+  sectionRules: {
     backgroundColor: "#0c141e",
   },
   app: {
