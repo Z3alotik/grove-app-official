@@ -3,7 +3,6 @@ import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles(() => ({
   GA_Card: {
     margin: "20px",
-    height: "50vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

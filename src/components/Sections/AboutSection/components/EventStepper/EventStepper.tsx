@@ -22,7 +22,9 @@ const EventStepper = () => {
           <Step key={step.label} className={classes.stepIcon}>
             <StepLabel className={classes.stepLabel}>{step.label}</StepLabel>
             <StepContent>
-              <Typography color="white">{step.description}</Typography>
+              <Typography color="white" fontFamily={"Teko"}>
+                {step.description}
+              </Typography>
               <Box sx={{ mb: 2 }}>
                 <Button
                   disabled={index === 2}

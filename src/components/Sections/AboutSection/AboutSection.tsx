@@ -9,17 +9,28 @@ const AboutSection = () => {
 
   return (
     <Box>
-      <Grid className={classes.wrapperGrid} container spacing={8} columns={12}>
-        <Grid size={12}>
-          <h1 className={classes.aboutTitle}>
-            <span>O akci</span>
-          </h1>
+      <Grid className={classes.wrapperGrid} container spacing={6} columns={12}>
+        <Grid container size={12}>
+          <Grid size={6}>
+            <h1 className={classes.aboutTitle}>
+              <span>O akci</span>
+            </h1>
+          </Grid>
+          <Grid size={6} className={classes.imageGrid}>
+            <img
+              className={classes.stepperImg}
+              src="hiw.png"
+              alt="How It Works"
+            />
+          </Grid>
         </Grid>
-        <Grid size={6}>
-          <span className={classes.aboutText}>{aboutContent.text}</span>
-        </Grid>
-        <Grid size={6}>
-          <EventStepper />
+        <Grid container size={12}>
+          <Grid size={6}>
+            <span className={classes.aboutText}>{aboutContent.text}</span>
+          </Grid>
+          <Grid size={6}>
+            <EventStepper />
+          </Grid>
         </Grid>
       </Grid>
     </Box>

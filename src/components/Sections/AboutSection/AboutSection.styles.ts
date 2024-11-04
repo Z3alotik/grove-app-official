@@ -12,12 +12,20 @@ const useStyles = makeStyles(() => ({
     color: "white",
     fontFamily: "Teko",
     fontSize: "1.5rem",
+    lineHeight: "0.5rem",
   },
   wrapperGrid: {
-    display: "flex",
-    flexWrap: "wrap",
     height: "80vh",
+    display: "flex",
     overflow: "auto",
+  },
+  stepperImg: {
+    width: "10rem",
+  },
+  imageGrid: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 }));
 
