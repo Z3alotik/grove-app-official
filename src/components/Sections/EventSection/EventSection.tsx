@@ -29,9 +29,10 @@ const EventSection = () => {
           </Grid>
         </Grid>
         <Grid size={6}>
-          <Card>
-            <CardMedia image="https://pngimg.com/uploads/qr_code/qr_code_PNG10.png" />
-          </Card>
+          <img
+            alt=""
+            src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
+          />
         </Grid>
       </Grid>
     </Box>

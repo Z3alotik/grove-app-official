@@ -7,11 +7,9 @@ import RuleIcon from "@mui/icons-material/Rule";
 import { Link } from "react-scroll";
 import useStyles from "./AppNav.styles";
 import AppMenu from "./components/AppMenu/AppMenu";
-import useAppNav from "./useAppNav";
 
 const AppNav = () => {
   const classes = useStyles();
-  const { handleCloseMenu, handleOpenMenu, openMenu } = useAppNav();
 
   return (
     <>
@@ -59,11 +57,7 @@ const AppNav = () => {
         </div>
 
         <div className={classes.menu}>
-          <AppMenu
-            onOpenMenu={handleOpenMenu}
-            onCloseMenu={handleCloseMenu}
-            openMenu={openMenu}
-          />
+          <AppMenu />
         </div>
       </div>
     </>
