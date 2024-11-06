@@ -13,7 +13,7 @@ const AboutSection = () => {
         <Grid container size={12}>
           <Grid size={6}>
             <h1 className={classes.aboutTitle}>
-              <span>O akci</span>
+              <span>{aboutContent.title}</span>
             </h1>
           </Grid>
           <Grid size={6} className={classes.imageGrid}>

@@ -1,4 +1,5 @@
 export const aboutContent = {
+  title: "O Akci",
   text: `Grove Night je taneční akce která se minimálně z prvního pohledu nic
             moc neliší od ostatních tanečních akcí. Je zde ale pár věcí, které
             jí dělají unikátní. Asi nejpodstatnějším aspektem je způsob, jak je
