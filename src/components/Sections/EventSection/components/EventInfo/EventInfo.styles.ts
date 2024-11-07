@@ -1,15 +1,39 @@
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles(() => ({
-  eventInfoText: {
-    color: "white",
-    fontFamily: "Teko",
-    fontSize: "1.5rem",
-    lineHeight: "0.5rem",
-  },
-  wrapperGrid: {
-    width: "100%",
+  infoWrapperGrid: {
+    display: "flex",
+    flexWrap: "wrap",
+    height: "80vh",
+    width: "100vw",
     overflow: "auto",
+  },
+  qrGrid: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  qrImage: {
+    width: "35%",
+    paddingTop: "35%",
+  },
+  infoHeader: {
+    fontSize: "2rem",
+    color: "white",
+    fontFamily: "Bebas Neue",
+  },
+  infoText: {
+    display: "flex",
+    justifyContent: "center",
+    fontFamily: "Teko",
+    fontSize: "3rem",
+    color: "white",
+  },
+  box: {
+    height: "100vh",
+    width: "100%",
+    background: "linear-gradient(to right, black, transparent 50%, black)",
+    backdropFilter: "blur(15px)",
+    webkitBackdropFilter: "blur(5px)",
   },
 }));
 

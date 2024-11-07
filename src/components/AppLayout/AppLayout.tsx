@@ -7,6 +7,8 @@ import { Element } from "react-scroll";
 import useStyles from "./AppLayout.styles";
 import RulesSection from "../Sections/RulesSection/RulesSection";
 
+const eventImage = "GRN8.png";
+
 const AppLayout = () => {
   const classes = useStyles();
   return (
@@ -29,6 +31,11 @@ const AppLayout = () => {
         <Element
           name="event"
           className={` ${classes.section} ${classes.sectionEvent}`}
+          style={{
+            backgroundImage: `url(${eventImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         >
           <EventSection />
         </Element>
