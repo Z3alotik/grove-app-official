@@ -24,6 +24,7 @@ const MusicTabs = () => {
           <Tab value="techno" label="Techno" />
           <Tab value="rap" label="Rap" />
           <Tab value="rock" label="Rock" />
+          <Tab value="rnb" label="RnB" />
         </Tabs>
       </Box>
 
