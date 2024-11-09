@@ -3,9 +3,11 @@ import Grid from "@mui/material/Grid2";
 import useStyles from "./EventInfo.styles";
 import GADivider from "../../../../general/GADivider/GADivider";
 import { EventInfoProps } from "./EventInfo.types";
+import { useEvent } from "../../../../../stateManagement/EventDataProvider";
 
 const EventInfo = ({ isOpen }: EventInfoProps) => {
   const classes = useStyles();
+  const { eventData } = useEvent();
   return (
     <Fade in={isOpen}>
       <Box className={classes.box}>
@@ -19,7 +21,7 @@ const EventInfo = ({ isOpen }: EventInfoProps) => {
             <Grid className={classes.qrGrid}>
               <CardMedia
                 className={classes.qrImage}
-                image="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
+                image={eventData.qr}
                 title="Event QR"
               />
             </Grid>
@@ -28,15 +30,11 @@ const EventInfo = ({ isOpen }: EventInfoProps) => {
             </GADivider>
           </Grid>
           <Grid size={12}>
-            <Grid className={classes.infoText} size={4}>
-              <span>10.6. 2025 18:00</span>
-            </Grid>
-            <Grid className={classes.infoText} size={4}>
-              <span>Chata Hubertka</span>
-            </Grid>
-            <Grid className={classes.infoText} size={4}>
-              <span>400Kč</span>
-            </Grid>
+            <span className={classes.infoText}>
+              {eventData.date} {eventData.time}
+            </span>
+            <span className={classes.infoText}>{eventData.place}</span>
+            <span className={classes.infoText}>{`${eventData.price}Kč`}</span>
           </Grid>
         </Grid>
       </Box>

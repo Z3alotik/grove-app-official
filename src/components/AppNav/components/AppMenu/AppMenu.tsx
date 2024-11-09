@@ -6,6 +6,7 @@ import EditCalendarIcon from "@mui/icons-material/EditCalendar";
 import GroupsIcon from "@mui/icons-material/Groups";
 import useAppMenu from "./useAppMenu";
 import LoginModal from "./components/LoginModal/LoginModal";
+import CreateEvent from "./components/CreateEvent/CreateEvent";
 
 const AppMenu = () => {
   const classes = useStyles();
@@ -18,6 +19,8 @@ const AppMenu = () => {
     handleOpenMenu,
     openMenu,
     openLogin,
+    openCreateEvent,
+    handleCloseCreateEvent,
   } = useAppMenu();
 
   const actionsDefinition = [
@@ -55,6 +58,10 @@ const AppMenu = () => {
         </SpeedDial>
       </Box>
       <LoginModal openLogin={openLogin} handleClose={handleCloseLogin} />
+      <CreateEvent
+        openCreateEvent={openCreateEvent}
+        handleCloseCreateEvent={handleCloseCreateEvent}
+      />
     </>
   );
 };

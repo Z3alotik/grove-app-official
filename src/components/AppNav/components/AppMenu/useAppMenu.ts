@@ -3,6 +3,7 @@ import { useCallback, useState } from "react";
 const useAppMenu = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
+  const [openCreateEvent, setOpenCreateEvent] = useState(false);
 
   const handleOpenMenu = () => {
     setOpenMenu(true);
@@ -14,7 +15,6 @@ const useAppMenu = () => {
 
   const handleOpenLogin = useCallback(() => {
     setOpenLogin(true);
-    setOpenMenu(false);
   }, []);
 
   const handleCloseLogin = useCallback(() => {
@@ -22,8 +22,11 @@ const useAppMenu = () => {
   }, []);
 
   const handleOpenCreateEvent = useCallback(() => {
-    console.log("Create Event action triggered");
-    // Add event creation logic here
+    setOpenCreateEvent(true);
+  }, []);
+
+  const handleCloseCreateEvent = useCallback(() => {
+    setOpenCreateEvent(false);
   }, []);
 
   const handleOpenParticipants = useCallback(() => {
@@ -40,6 +43,8 @@ const useAppMenu = () => {
     openLogin,
     handleCloseMenu,
     handleOpenMenu,
+    openCreateEvent,
+    handleCloseCreateEvent,
   };
 };
 

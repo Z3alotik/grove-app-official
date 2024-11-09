@@ -1,19 +1,14 @@
 import { Box } from "@mui/material";
 import EventInfo from "./components/EventInfo/EventInfo";
-import { useState } from "react";
+import useEventSection from "./useEventSection";
 
 const EventSection = () => {
-  const [isOpen, setIsOpen] = useState(true);
-
-  const handleOpenInfo = () => {
-    setIsOpen((prev) => !prev);
-  };
-
+  const { isOpen, handleOpenEventInfo } = useEventSection();
   return (
     <Box
-      onClick={handleOpenInfo}
+      onClick={handleOpenEventInfo}
       style={{
-        cursor: "pointer", // Smooth transition
+        cursor: "pointer",
       }}
     >
       <EventInfo isOpen={isOpen} />

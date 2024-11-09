@@ -6,6 +6,7 @@ const useStyles = makeStyles(() => ({
     flexWrap: "wrap",
     height: "80vh",
     width: "100vw",
+    justifyContent: "center",
     overflow: "auto",
   },
   qrGrid: {
@@ -13,8 +14,8 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
   },
   qrImage: {
-    width: "35%",
-    paddingTop: "35%",
+    width: "25%",
+    paddingTop: "25%",
   },
   infoHeader: {
     fontSize: "2rem",
@@ -25,7 +26,7 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "center",
     fontFamily: "Teko",
-    fontSize: "3rem",
+    fontSize: "2rem",
     color: "white",
   },
   box: {

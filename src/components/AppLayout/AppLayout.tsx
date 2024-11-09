@@ -6,11 +6,11 @@ import MusicSection from "../Sections/MusicSection/MusicSection";
 import { Element } from "react-scroll";
 import useStyles from "./AppLayout.styles";
 import RulesSection from "../Sections/RulesSection/RulesSection";
-
-const eventImage = "GRN8.png";
+import { useEvent } from "../../stateManagement/EventDataProvider";
 
 const AppLayout = () => {
   const classes = useStyles();
+  const { eventData } = useEvent();
   return (
     <div className={classes.app}>
       <div>
@@ -32,7 +32,7 @@ const AppLayout = () => {
           name="event"
           className={` ${classes.section} ${classes.sectionEvent}`}
           style={{
-            backgroundImage: `url(${eventImage})`,
+            backgroundImage: `url(${eventData.image})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
