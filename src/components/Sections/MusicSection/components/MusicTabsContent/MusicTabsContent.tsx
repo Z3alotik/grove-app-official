@@ -16,8 +16,8 @@ const MusicTabsContent = ({ tabValue }: MusicTabsProps) => {
       return <GAGenre spotifyLink={genreURLs.rap} />;
     case "rock":
       return <GAGenre spotifyLink={genreURLs.rock} />;
-    case "rnb":
-      return <GAGenre spotifyLink={genreURLs.rnb} />;
+    case "pop":
+      return <GAGenre spotifyLink={genreURLs.pop} />;
     default:
       return null;
   }

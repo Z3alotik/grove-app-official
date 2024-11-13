@@ -3,6 +3,10 @@ export type CreateEventProps = {
   handleCloseCreateEvent: () => void;
 };
 
+export type CreateEventHookProps = {
+  handleCloseCreateEvent: () => void;
+};
+
 export type EventProps = {
   date: string;
   time: string;

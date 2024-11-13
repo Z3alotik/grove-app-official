@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   EventContextType,
   EventData,
@@ -17,8 +17,19 @@ export const EventDataProvider = ({ children }: EventDataProviderProps) => {
     qr: "",
   });
 
+  // Load current event data on reloads
+  useEffect(() => {
+    const savedEventData = localStorage.getItem("upcomingEvent");
+    if (savedEventData) {
+      setEventData(JSON.parse(savedEventData));
+    }
+  }, []);
+
   const createEvent = (data: EventData) => {
+    //Set upcoming event data to state
     setEventData(data);
+    //Set upcoming event data to local storage
+    localStorage.setItem("upcomingEvent", JSON.stringify(data));
   };
 
   return (
