@@ -20,7 +20,6 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#0c141e",
   },
   sectionEvent: {
-    padding: 0,
     position: "relative",
   },
   sectionMusic: {

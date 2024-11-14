@@ -1,6 +1,6 @@
 import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   navigation: {
     position: "fixed",
     bottom: 0,
@@ -21,14 +21,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     margin: "10px",
-  },
-  iconButton: {
-    width: 40,
-    height: 40,
-    "& svg": {
-      fontSize: "1.3rem",
-      color: "white",
-    },
   },
 }));
 

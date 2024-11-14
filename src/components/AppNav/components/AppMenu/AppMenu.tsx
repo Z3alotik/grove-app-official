@@ -1,12 +1,10 @@
 import { Backdrop, Box, SpeedDial, SpeedDialAction } from "@mui/material";
 import useStyles from "./AppMenu.styles";
 import MenuIcon from "@mui/icons-material/Menu";
-import LoginIcon from "@mui/icons-material/Login";
-import EditCalendarIcon from "@mui/icons-material/EditCalendar";
-import GroupsIcon from "@mui/icons-material/Groups";
 import useAppMenu from "./useAppMenu";
 import LoginModal from "./components/LoginModal/LoginModal";
 import CreateEvent from "./components/CreateEvent/CreateEvent";
+import { getActionsDefinition } from "./AppMenu.consts";
 
 const AppMenu = () => {
   const classes = useStyles();
@@ -23,15 +21,11 @@ const AppMenu = () => {
     handleCloseCreateEvent,
   } = useAppMenu();
 
-  const actionsDefinition = [
-    { icon: <LoginIcon />, name: "Přihlášení", action: handleOpenLogin },
-    {
-      icon: <EditCalendarIcon />,
-      name: "Vytvořit událost",
-      action: handleOpenCreateEvent,
-    },
-    { icon: <GroupsIcon />, name: "Účastníci", action: handleOpenParticipants },
-  ];
+  const actions = getActionsDefinition({
+    handleOpenCreateEvent,
+    handleOpenLogin,
+    handleOpenParticipants,
+  });
 
   return (
     <>
@@ -46,7 +40,7 @@ const AppMenu = () => {
           open={openMenu}
           direction="left"
         >
-          {actionsDefinition.map((action) => (
+          {actions.map((action) => (
             <SpeedDialAction
               className={classes.speedDialAction}
               key={action.name}

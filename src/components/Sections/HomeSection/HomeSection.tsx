@@ -1,4 +1,5 @@
 import useStyles from "./HomeSection.styles";
+import { homeContent } from "./HomeSection.consts";
 
 const HomeSection = () => {
   const classes = useStyles();
@@ -6,11 +7,11 @@ const HomeSection = () => {
   return (
     <div className={classes.titleDiv}>
       <h1 className={classes.title}>
-        <span>Grove</span>
-        <span>Night</span>
+        <span>{homeContent.title_1}</span>
+        <span>{homeContent.title_2}</span>
       </h1>
 
-      <p className={classes.p}>Small but uncommon dance party ...</p>
+      <p className={classes.p}>{homeContent.mottoText}</p>
     </div>
   );
 };
