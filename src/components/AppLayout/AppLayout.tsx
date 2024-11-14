@@ -11,6 +11,7 @@ import { useEvent } from "../../stateManagement/EventDataProvider";
 const AppLayout = () => {
   const classes = useStyles();
   const { eventData } = useEvent();
+
   return (
     <div className={classes.app}>
       <div>
