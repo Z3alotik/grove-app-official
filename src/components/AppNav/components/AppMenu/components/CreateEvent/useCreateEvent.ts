@@ -7,6 +7,7 @@ const initialState = {
   time: "",
   place: "",
   price: "",
+  news: "",
   image: "",
   qr: "",
 };
@@ -22,10 +23,15 @@ const useCreateEvent = ({ handleCloseCreateEvent }: CreateEventHookProps) => {
         return { ...state, place: action.payload };
       case "setPrice":
         return { ...state, price: action.payload };
+      case "setNews":
+        return { ...state, news: action.payload };
       case "setImage":
-        return { ...state, image: action.payload };
+        return {
+          ...state,
+          image: URL.createObjectURL(action.payload),
+        };
       case "setQr":
-        return { ...state, qr: action.payload };
+        return { ...state, qr: URL.createObjectURL(action.payload) };
       case "resetState":
         return initialState;
       default:
@@ -35,7 +41,7 @@ const useCreateEvent = ({ handleCloseCreateEvent }: CreateEventHookProps) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { createEvent } = useEvent();
 
-  const { date, time, place, price, image, qr } = state;
+  const { date, time, place, price, news, image, qr } = state;
 
   const handleSubmitCreatedEvent = (e: any) => {
     e.preventDefault();
@@ -45,6 +51,7 @@ const useCreateEvent = ({ handleCloseCreateEvent }: CreateEventHookProps) => {
       time,
       place,
       price,
+      news,
       image,
       qr,
     };

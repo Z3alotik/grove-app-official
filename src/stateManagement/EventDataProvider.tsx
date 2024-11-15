@@ -13,6 +13,7 @@ export const EventDataProvider = ({ children }: EventDataProviderProps) => {
     time: "",
     place: "",
     price: "",
+    news: "",
     image: "",
     qr: "",
   });
