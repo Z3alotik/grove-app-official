@@ -5,6 +5,7 @@ export type EventData = {
   time: string;
   place: string;
   price: string;
+  news: string;
   image: string;
   qr: string;
 };

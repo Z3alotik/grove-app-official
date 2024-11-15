@@ -4,9 +4,15 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Divider,
+  FormControl,
+  TextField,
 } from "@mui/material";
 import { CreateEventProps } from "./CreateEvent.types";
 import useCreateEvent from "./useCreateEvent";
+import useStyles from "./CreateEvent.styles";
+import QrCode2Icon from "@mui/icons-material/QrCode2";
+import ImageIcon from "@mui/icons-material/Image";
 
 const CreateEvent = ({
   openCreateEvent,
@@ -15,70 +21,135 @@ const CreateEvent = ({
   const { dispatch, handleSubmitCreatedEvent, state } = useCreateEvent({
     handleCloseCreateEvent,
   });
+  const classes = useStyles();
+
   return (
     <div>
-      <Dialog open={openCreateEvent} onClose={handleCloseCreateEvent}>
-        <DialogTitle>Vytvořit událost</DialogTitle>
+      <Dialog
+        className={classes.dialog}
+        open={openCreateEvent}
+        onClose={handleCloseCreateEvent}
+      >
+        <DialogTitle
+          sx={{
+            color: "white",
+            fontFamily: "Bebas Neue",
+            fontSize: "1.5rem",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          Vytvořit událost
+        </DialogTitle>
+        <Divider variant="middle" sx={{ borderColor: "white" }} />
         <DialogContent>
-          <form>
-            <input
-              required
-              placeholder="Date"
-              type="text"
+          <FormControl className={classes.eventForm}>
+            <TextField
+              className={classes.textField}
+              size="small"
+              label="Date"
+              margin="dense"
               value={state.date}
               onChange={(e) =>
                 dispatch({ type: "setDate", payload: e.target.value })
               }
             />
-            <input
-              required
-              placeholder="Time"
-              type="text"
+            <TextField
+              className={classes.textField}
+              size="small"
+              label="Time"
+              margin="dense"
               value={state.time}
               onChange={(e) =>
                 dispatch({ type: "setTime", payload: e.target.value })
               }
             />
-            <input
-              required
-              placeholder="Place"
-              type="text"
+            <TextField
+              className={classes.textField}
+              size="small"
+              label="Place"
+              margin="dense"
               value={state.place}
               onChange={(e) =>
                 dispatch({ type: "setPlace", payload: e.target.value })
               }
             />
-            <input
-              required
-              placeholder="Price"
-              type="text"
+            <TextField
+              className={classes.textField}
+              size="small"
+              label="Price"
+              margin="dense"
               value={state.price}
               onChange={(e) =>
                 dispatch({ type: "setPrice", payload: e.target.value })
               }
             />
-            <input
-              required
-              placeholder="Image URL"
-              type="text"
-              value={state.image}
+            <TextField
+              className={classes.textField}
+              label="News"
+              multiline
+              margin="dense"
+              rows={4}
+              value={state.news}
               onChange={(e) =>
-                dispatch({ type: "setImage", payload: e.target.value })
+                dispatch({ type: "setNews", payload: e.target.value })
               }
             />
-            <input
-              required
-              placeholder="QR Image"
-              type="text"
-              value={state.qr}
-              onChange={(e) =>
-                dispatch({ type: "setQr", payload: e.target.value })
-              }
-            />
-          </form>
+            <div className={classes.fileInputDiv}>
+              <ImageIcon
+                sx={{
+                  color: "white",
+                }}
+              />
+              <input
+                className={classes.imageInput}
+                required
+                placeholder="Image URL"
+                type="file"
+                onChange={(e) => {
+                  if (e.target.files) {
+                    dispatch({ type: "setImage", payload: e.target.files[0] });
+                  }
+                }}
+              />
+            </div>
+            <div className={classes.fileInputDiv}>
+              <QrCode2Icon
+                sx={{
+                  color: "white",
+                }}
+              />
+              <input
+                className={classes.imageInput}
+                required
+                placeholder="QR Image"
+                type="file"
+                onChange={(e) => {
+                  if (e.target.files) {
+                    dispatch({ type: "setQr", payload: e.target.files[0] });
+                  }
+                }}
+              />
+            </div>
+          </FormControl>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleSubmitCreatedEvent}>Vytvořit</Button>
+        <DialogActions
+          sx={{
+            display: "contents",
+          }}
+        >
+          <Button
+            variant="contained"
+            onClick={handleSubmitCreatedEvent}
+            sx={{
+              color: "black",
+              backgroundColor: "white",
+              fontFamily: "Bebas Neue",
+              fontSize: "1.5rem",
+            }}
+          >
+            Vytvořit
+          </Button>
         </DialogActions>
       </Dialog>
     </div>
