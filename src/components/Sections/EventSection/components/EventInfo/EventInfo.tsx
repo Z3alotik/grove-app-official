@@ -1,7 +1,6 @@
-import { Box, CardMedia, Fade } from "@mui/material";
+import { Box, CardMedia, Divider, Fade } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import useStyles from "./EventInfo.styles";
-import GADivider from "../../../../general/GADivider/GADivider";
 import { EventInfoProps } from "./EventInfo.types";
 import { useEvent } from "../../../../../stateManagement/EventDataProvider";
 
@@ -17,7 +16,7 @@ const EventInfo = ({ isOpen }: EventInfoProps) => {
           columns={12}
           direction="column"
         >
-          <Grid size={12}>
+          <Grid size={6}>
             <Grid className={classes.qrGrid}>
               <CardMedia
                 className={classes.qrImage}
@@ -25,16 +24,68 @@ const EventInfo = ({ isOpen }: EventInfoProps) => {
                 title="Event QR"
               />
             </Grid>
-            <GADivider margin={3}>
-              <span className={classes.infoHeader}>Event Info</span>
-            </GADivider>
           </Grid>
-          <Grid size={12}>
-            <span className={classes.infoText}>
-              {eventData.date} {eventData.time}
-            </span>
-            <span className={classes.infoText}>{eventData.place}</span>
-            <span className={classes.infoText}>{`${eventData.price}Kč`}</span>
+          <Divider orientation="vertical" sx={{ borderColor: "white" }} />
+          <Grid
+            container
+            direction="column"
+            size={6}
+            sx={{
+              display: "flex",
+              alignContent: "center",
+            }}
+          >
+            <Grid
+              size={6}
+              container
+              direction="row"
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                color: "white",
+                fontFamily: "Bebas Neue",
+                fontSize: "3rem",
+                margin: "20px",
+              }}
+            >
+              <Grid>
+                <span>{eventData.date}</span>
+              </Grid>
+              <Grid>
+                <span>{eventData.time}</span>
+              </Grid>
+            </Grid>
+            <Grid
+              size={6}
+              container
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                color: "white",
+                fontFamily: "Bebas Neue",
+                fontSize: "3rem",
+                margin: "20px",
+              }}
+            >
+              <span>{eventData.place}</span>
+            </Grid>
+            <Grid
+              size={6}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                color: "white",
+                fontFamily: "Teko",
+                fontSize: "1.5rem",
+                margin: "20px",
+              }}
+            >
+              <span>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+                feugiat, eros nec faucibus fermentum, dolor justo venenatis
+                libero, a tincidunt elit tortor a urna.
+              </span>
+            </Grid>
           </Grid>
         </Grid>
       </Box>
