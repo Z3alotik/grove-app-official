@@ -2,8 +2,9 @@ import { useCallback, useState } from "react";
 
 const useAppMenu = () => {
   const [openMenu, setOpenMenu] = useState(false);
-  const [openLogin, setOpenLogin] = useState(false);
+  const [openAuthDialog, setOpenAuthDialog] = useState(false);
   const [openCreateEvent, setOpenCreateEvent] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
   const handleOpenMenu = () => {
     setOpenMenu(true);
@@ -13,12 +14,12 @@ const useAppMenu = () => {
     setOpenMenu(false);
   };
 
-  const handleOpenLogin = useCallback(() => {
-    setOpenLogin(true);
+  const handleOpenAuthDialog = useCallback(() => {
+    setOpenAuthDialog(true);
   }, []);
 
-  const handleCloseLogin = useCallback(() => {
-    setOpenLogin(false);
+  const handleCloseAuthDialog = useCallback(() => {
+    setOpenAuthDialog(false);
   }, []);
 
   const handleOpenCreateEvent = useCallback(() => {
@@ -34,17 +35,23 @@ const useAppMenu = () => {
     // Add participants logic here
   }, []);
 
+  const handleChangeAuthContent = () => {
+    setIsLogin((prev) => !prev);
+  };
+
   return {
     handleOpenCreateEvent,
-    handleOpenLogin,
-    handleCloseLogin,
+    handleOpenAuthDialog,
+    handleCloseAuthDialog,
     handleOpenParticipants,
     openMenu,
-    openLogin,
+    openAuthDialog,
     handleCloseMenu,
     handleOpenMenu,
     openCreateEvent,
     handleCloseCreateEvent,
+    isLogin,
+    handleChangeAuthContent,
   };
 };
 

@@ -6,6 +6,6 @@ export type AppMenuProps = {
 
 export type ActionsDefinitionProps = {
   handleOpenCreateEvent: () => void;
-  handleOpenLogin: () => void;
+  handleOpenAuthDialog: () => void;
   handleOpenParticipants: () => void;
 };

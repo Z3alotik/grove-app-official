@@ -58,6 +58,28 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     alignItems: "center",
   },
+  iconTextField: {
+    display: "flex",
+    alignItems: "center",
+  },
+  spanButton: {
+    display: "inline-block",
+    textAlign: "center",
+    marginBottom: "20px",
+    fontFamily: "Teko",
+    color: "white",
+    cursor: "pointer",
+  },
+  spanDiv: {
+    textAlign: "center",
+  },
+  formControlLabel: {
+    "& .MuiFormControlLabel-label": {
+      color: "white",
+      fontSize: "1rem",
+      fontFamily: "Teko",
+    },
+  },
 }));
 
 export default useStyles;

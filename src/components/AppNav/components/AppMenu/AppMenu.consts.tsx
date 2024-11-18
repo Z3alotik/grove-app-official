@@ -5,10 +5,10 @@ import { ActionsDefinitionProps } from "./AppMenu.types";
 
 export const getActionsDefinition = ({
   handleOpenCreateEvent,
-  handleOpenLogin,
+  handleOpenAuthDialog,
   handleOpenParticipants,
 }: ActionsDefinitionProps) => [
-  { icon: <LoginIcon />, name: "Přihlášení", action: handleOpenLogin },
+  { icon: <LoginIcon />, name: "Přihlášení", action: handleOpenAuthDialog },
   {
     icon: <EditCalendarIcon />,
     name: "Vytvořit událost",

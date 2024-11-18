@@ -2,28 +2,30 @@ import { Backdrop, Box, SpeedDial, SpeedDialAction } from "@mui/material";
 import useStyles from "./AppMenu.styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import useAppMenu from "./useAppMenu";
-import LoginModal from "./components/LoginModal/LoginModal";
 import CreateEvent from "./components/CreateEvent/CreateEvent";
 import { getActionsDefinition } from "./AppMenu.consts";
+import AuthDialog from "./components/AuthDialog/AuthDialog";
 
 const AppMenu = () => {
   const classes = useStyles();
   const {
     handleOpenCreateEvent,
-    handleOpenLogin,
-    handleCloseLogin,
+    handleOpenAuthDialog,
     handleOpenParticipants,
     handleCloseMenu,
     handleOpenMenu,
     openMenu,
-    openLogin,
     openCreateEvent,
     handleCloseCreateEvent,
+    openAuthDialog,
+    handleCloseAuthDialog,
+    isLogin,
+    handleChangeAuthContent,
   } = useAppMenu();
 
   const actions = getActionsDefinition({
     handleOpenCreateEvent,
-    handleOpenLogin,
+    handleOpenAuthDialog,
     handleOpenParticipants,
   });
 
@@ -51,7 +53,12 @@ const AppMenu = () => {
           ))}
         </SpeedDial>
       </Box>
-      <LoginModal openLogin={openLogin} handleClose={handleCloseLogin} />
+      <AuthDialog
+        openAuthDialog={openAuthDialog}
+        handleCloseAuthDialog={handleCloseAuthDialog}
+        handleChangeAuthContent={handleChangeAuthContent}
+        isLogin={isLogin}
+      />
       <CreateEvent
         openCreateEvent={openCreateEvent}
         handleCloseCreateEvent={handleCloseCreateEvent}
