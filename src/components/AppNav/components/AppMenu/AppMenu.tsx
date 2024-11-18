@@ -5,6 +5,7 @@ import useAppMenu from "./useAppMenu";
 import CreateEvent from "./components/CreateEvent/CreateEvent";
 import { getActionsDefinition } from "./AppMenu.consts";
 import AuthDialog from "./components/AuthDialog/AuthDialog";
+import ParticipantsDialog from "./components/ParticipantsDialog/ParticipantsDialog";
 
 const AppMenu = () => {
   const classes = useStyles();
@@ -12,8 +13,10 @@ const AppMenu = () => {
     handleOpenCreateEvent,
     handleOpenAuthDialog,
     handleOpenParticipants,
+    handleCloseParticipants,
     handleCloseMenu,
     handleOpenMenu,
+    openParticipants,
     openMenu,
     openCreateEvent,
     handleCloseCreateEvent,
@@ -62,6 +65,10 @@ const AppMenu = () => {
       <CreateEvent
         openCreateEvent={openCreateEvent}
         handleCloseCreateEvent={handleCloseCreateEvent}
+      />
+      <ParticipantsDialog
+        openParticipants={openParticipants}
+        handleCloseParticipants={handleCloseParticipants}
       />
     </>
   );
