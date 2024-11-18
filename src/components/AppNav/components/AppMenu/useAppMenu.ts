@@ -4,6 +4,7 @@ const useAppMenu = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [openAuthDialog, setOpenAuthDialog] = useState(false);
   const [openCreateEvent, setOpenCreateEvent] = useState(false);
+  const [openParticipants, setOpenParticipants] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
 
   const handleOpenMenu = () => {
@@ -31,8 +32,11 @@ const useAppMenu = () => {
   }, []);
 
   const handleOpenParticipants = useCallback(() => {
-    console.log("Participants action triggered");
-    // Add participants logic here
+    setOpenParticipants(true);
+  }, []);
+
+  const handleCloseParticipants = useCallback(() => {
+    setOpenParticipants(false);
   }, []);
 
   const handleChangeAuthContent = () => {
@@ -44,6 +48,8 @@ const useAppMenu = () => {
     handleOpenAuthDialog,
     handleCloseAuthDialog,
     handleOpenParticipants,
+    handleCloseParticipants,
+    openParticipants,
     openMenu,
     openAuthDialog,
     handleCloseMenu,
