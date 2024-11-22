@@ -47,6 +47,7 @@ const CreateEvent = ({
             <TextField
               className={classes.textField}
               size="small"
+              type="date"
               label="Date"
               margin="dense"
               value={state.date}
@@ -58,6 +59,7 @@ const CreateEvent = ({
               className={classes.textField}
               size="small"
               label="Time"
+              type="time"
               margin="dense"
               value={state.time}
               onChange={(e) =>
@@ -104,11 +106,11 @@ const CreateEvent = ({
               <input
                 className={classes.imageInput}
                 required
-                placeholder="Image URL"
+                placeholder="Banner URL"
                 type="file"
                 onChange={(e) => {
                   if (e.target.files) {
-                    dispatch({ type: "setImage", payload: e.target.files[0] });
+                    dispatch({ type: "setBanner", payload: e.target.files[0] });
                   }
                 }}
               />
