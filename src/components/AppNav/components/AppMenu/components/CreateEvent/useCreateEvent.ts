@@ -44,32 +44,34 @@ const useCreateEvent = ({ handleCloseCreateEvent }: CreateEventHookProps) => {
 
   const { date, time, place, price, news, banner, qr } = state;
 
+  // Submit form function
   const handleSubmitCreatedEvent = async (e: any) => {
     e.preventDefault();
 
+    // Format time to HH:mm:ss
     const formattedTime = formatTime(time);
 
     // Create a new FormData object
     const formData = new FormData();
-
     // Append text field values from the reducer state
     formData.append("date", date);
     formData.append("time", formattedTime);
     formData.append("place", place);
     formData.append("price", price);
     formData.append("news", news);
-
-    // Append the files (if any) to the FormData object
     if (banner) {
-      formData.append("banner", banner); // File object for banner
+      formData.append("banner", banner);
     }
     if (qr) {
-      formData.append("qr", qr); // File object for qr
+      formData.append("qr", qr);
     }
 
+    // Console log the data that I wanna sent to BE
     formData.forEach((value, key) => {
       console.log(key, value);
     });
+
+    // Call create event POST function
     createEvent(formData);
     handleCloseCreateEvent();
   };

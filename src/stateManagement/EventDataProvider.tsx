@@ -7,8 +7,9 @@ import {
 import axios from "axios";
 import { format } from "date-fns";
 
+// Event data context
 const EventDataContext = createContext<EventContextType | undefined>(undefined);
-
+// Base API URL
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const EventDataProvider = ({ children }: EventDataProviderProps) => {
@@ -32,6 +33,7 @@ export const EventDataProvider = ({ children }: EventDataProviderProps) => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
+        // Console log data fetched from BE
         console.log("Data fetched from BE:", data);
 
         // Format the date to a dd.mm.yyyy format
@@ -55,7 +57,7 @@ export const EventDataProvider = ({ children }: EventDataProviderProps) => {
     if (response.status === 201) {
       console.log("Event created successfully");
       console.log("Data sent to BE:", response.data);
-      // window.location.reload();
+      window.location.reload();
     } else {
       console.error("Failed to create event");
     }
