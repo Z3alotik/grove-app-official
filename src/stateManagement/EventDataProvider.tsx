@@ -6,6 +6,7 @@ import {
 } from "./EventDataProvider.types";
 import axios from "axios";
 import { format } from "date-fns";
+import { useSnackbar } from "./SnackbarProvider";
 
 // Event data context
 const EventDataContext = createContext<EventContextType | undefined>(undefined);
@@ -13,6 +14,7 @@ const EventDataContext = createContext<EventContextType | undefined>(undefined);
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const EventDataProvider = ({ children }: EventDataProviderProps) => {
+  const { showSnackbar } = useSnackbar();
   const [eventData, setEventData] = useState<EventData>({
     banner: "",
     date: "",
@@ -24,28 +26,29 @@ export const EventDataProvider = ({ children }: EventDataProviderProps) => {
   });
   const api = axios.create({ baseURL: API_BASE_URL });
 
-  // Fetch current event data
   useEffect(() => {
-    const fetchCurrentEvent = async () => {
-      try {
-        const response = await fetch(`${API_BASE_URL}/events/current`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        // Console log data fetched from BE
-        console.log("Data fetched from BE:", data);
-
-        // Format the date to a dd.mm.yyyy format
-        const formattedDate = format(new Date(data.date), "dd.MM.yyyy");
-        // Set the current event data, so we can than use them across our application via context API
-        setEventData({ ...data, date: formattedDate });
-      } catch {
-        alert("There was a problem loading data...");
-      }
-    };
     fetchCurrentEvent();
   }, []);
+
+  // Fetch current event data
+  const fetchCurrentEvent = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/events/current`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      // Console log data fetched from BE
+      console.log("Data fetched from BE:", data);
+
+      // Format the date to a dd.mm.yyyy format
+      const formattedDate = format(new Date(data.date), "dd.MM.yyyy");
+      // Update the context state
+      setEventData({ ...data, date: formattedDate });
+    } catch (error) {
+      alert("There was a problem loading data...");
+    }
+  };
 
   // Create event and send event data to BE and Postgres DB
   const createEvent = async (data: FormData) => {
@@ -55,11 +58,11 @@ export const EventDataProvider = ({ children }: EventDataProviderProps) => {
       },
     });
     if (response.status === 201) {
-      console.log("Event created successfully");
       console.log("Data sent to BE:", response.data);
-      window.location.reload();
+      fetchCurrentEvent();
+      showSnackbar("Nová událost vytvořena", "success");
     } else {
-      console.error("Failed to create event");
+      showSnackbar("Událost nebylo možné vytvořit", "error");
     }
   };
 
