@@ -50,7 +50,6 @@ const CreateEvent = ({
               type="date"
               label="Date"
               margin="dense"
-              required
               value={state.date}
               onChange={(e) =>
                 dispatch({ type: "setDate", payload: e.target.value })
@@ -62,7 +61,6 @@ const CreateEvent = ({
               label="Time"
               type="time"
               margin="dense"
-              required
               value={state.time}
               onChange={(e) =>
                 dispatch({ type: "setTime", payload: e.target.value })
@@ -73,7 +71,6 @@ const CreateEvent = ({
               size="small"
               label="Place"
               margin="dense"
-              required
               value={state.place}
               onChange={(e) =>
                 dispatch({ type: "setPlace", payload: e.target.value })
@@ -84,7 +81,6 @@ const CreateEvent = ({
               size="small"
               label="Price"
               margin="dense"
-              required
               value={state.price}
               onChange={(e) =>
                 dispatch({ type: "setPrice", payload: e.target.value })
