@@ -74,6 +74,7 @@ const useCreateEvent = ({ handleCloseCreateEvent }: CreateEventHookProps) => {
     // Call create event POST function
     createEvent(formData);
     handleCloseCreateEvent();
+    dispatch({ type: "handleReset" });
   };
 
   return {
