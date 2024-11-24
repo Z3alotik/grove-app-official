@@ -6,13 +6,13 @@ export type EventData = {
   place: string;
   price: string;
   news: string;
-  image: string;
+  banner: string;
   qr: string;
 };
 
 export interface EventContextType {
   eventData: EventData;
-  createEvent: (data: EventData) => void;
+  createEvent: (data: FormData) => void;
 }
 
 export interface EventDataProviderProps {

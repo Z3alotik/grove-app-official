@@ -33,7 +33,7 @@ const AppLayout = () => {
           name="event"
           className={` ${classes.section} ${classes.sectionEvent}`}
           style={{
-            backgroundImage: `url(${eventData.image})`,
+            backgroundImage: `url(${eventData.banner})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

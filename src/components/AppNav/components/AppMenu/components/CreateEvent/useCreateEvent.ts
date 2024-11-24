@@ -1,6 +1,7 @@
 import { useReducer } from "react";
 import { useEvent } from "../../../../../../stateManagement/EventDataProvider";
 import { CreateEventHookProps } from "./CreateEvent.types";
+import { formatTime } from "../../../../../../utility/DatetimeFormatting";
 
 const initialState = {
   date: "",
@@ -8,7 +9,7 @@ const initialState = {
   place: "",
   price: "",
   news: "",
-  image: "",
+  banner: "",
   qr: "",
 };
 
@@ -25,13 +26,13 @@ const useCreateEvent = ({ handleCloseCreateEvent }: CreateEventHookProps) => {
         return { ...state, price: action.payload };
       case "setNews":
         return { ...state, news: action.payload };
-      case "setImage":
+      case "setBanner":
         return {
           ...state,
-          image: URL.createObjectURL(action.payload),
+          banner: action.payload,
         };
       case "setQr":
-        return { ...state, qr: URL.createObjectURL(action.payload) };
+        return { ...state, qr: action.payload };
       case "resetState":
         return initialState;
       default:
@@ -41,21 +42,37 @@ const useCreateEvent = ({ handleCloseCreateEvent }: CreateEventHookProps) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { createEvent } = useEvent();
 
-  const { date, time, place, price, news, image, qr } = state;
+  const { date, time, place, price, news, banner, qr } = state;
 
-  const handleSubmitCreatedEvent = (e: any) => {
+  // Submit form function
+  const handleSubmitCreatedEvent = async (e: any) => {
     e.preventDefault();
 
-    const upcomingEvent = {
-      date,
-      time,
-      place,
-      price,
-      news,
-      image,
-      qr,
-    };
-    createEvent(upcomingEvent);
+    // Format time to HH:mm:ss
+    const formattedTime = formatTime(time);
+
+    // Create a new FormData object
+    const formData = new FormData();
+    // Append text field values from the reducer state
+    formData.append("date", date);
+    formData.append("time", formattedTime);
+    formData.append("place", place);
+    formData.append("price", price);
+    formData.append("news", news);
+    if (banner) {
+      formData.append("banner", banner);
+    }
+    if (qr) {
+      formData.append("qr", qr);
+    }
+
+    // Console log the data that I wanna sent to BE
+    formData.forEach((value, key) => {
+      console.log(key, value);
+    });
+
+    // Call create event POST function
+    createEvent(formData);
     handleCloseCreateEvent();
   };
 

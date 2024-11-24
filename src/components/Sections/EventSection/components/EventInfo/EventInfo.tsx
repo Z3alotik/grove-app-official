@@ -19,11 +19,15 @@ const EventInfo = ({ isOpen }: EventInfoProps) => {
         >
           <Grid size={12}>
             <Grid className={classes.qrGrid}>
-              <CardMedia
-                className={classes.qrImage}
-                image={eventData.qr}
-                title="Event QR"
-              />
+              {eventData?.qr ? (
+                <CardMedia
+                  className={classes.qrImage}
+                  image={eventData?.qr}
+                  title="Event QR"
+                />
+              ) : (
+                <span>No QR Code available</span>
+              )}
             </Grid>
             <GADivider margin={3}>
               <span className={classes.infoHeader}>Event Info</span>
@@ -31,10 +35,10 @@ const EventInfo = ({ isOpen }: EventInfoProps) => {
           </Grid>
           <Grid size={12}>
             <span className={classes.infoText}>
-              {eventData.date} {eventData.time}
+              {eventData?.date} {eventData?.time}
             </span>
-            <span className={classes.infoText}>{eventData.place}</span>
-            <span className={classes.infoText}>{`${eventData.price}Kč`}</span>
+            <span className={classes.infoText}>{eventData?.place}</span>
+            <span className={classes.infoText}>{`${eventData?.price}Kč`}</span>
           </Grid>
         </Grid>
       </Box>
