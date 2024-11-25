@@ -1,5 +1,7 @@
 import {
+  Button,
   Checkbox,
+  DialogActions,
   DialogContent,
   DialogTitle,
   Divider,
@@ -10,9 +12,11 @@ import {
 import PersonIcon from "@mui/icons-material/Person";
 import LockIcon from "@mui/icons-material/Lock";
 import useStyles from "../../CreateEvent/CreateEvent.styles";
+import useLoginContent from "./useLoginContent";
 
 const LoginContent = () => {
   const classes = useStyles();
+  const { state, dispatch, handleLogin } = useLoginContent();
   return (
     <>
       <DialogTitle
@@ -33,8 +37,12 @@ const LoginContent = () => {
             <TextField
               className={classes.textField}
               size="small"
-              label="Name"
+              label="Email"
               margin="dense"
+              value={state.email}
+              onChange={(e) =>
+                dispatch({ type: "setEmail", payload: e.target.value })
+              }
             />
             <PersonIcon
               sx={{ color: "white", position: "absolute", right: 10 }}
@@ -46,6 +54,10 @@ const LoginContent = () => {
               size="small"
               label="Password"
               margin="dense"
+              value={state.password}
+              onChange={(e) =>
+                dispatch({ type: "setPassword", payload: e.target.value })
+              }
             />
             <LockIcon
               sx={{ color: "white", position: "absolute", right: 10 }}
@@ -68,6 +80,26 @@ const LoginContent = () => {
             className={classes.formControlLabel}
           />
         </FormControl>
+        <DialogActions
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Button
+            variant="contained"
+            sx={{
+              color: "black",
+              backgroundColor: "white",
+              fontFamily: "Bebas Neue",
+              fontSize: "1.5rem",
+            }}
+            onClick={handleLogin}
+          >
+            {"Přihlásit se"}
+          </Button>
+        </DialogActions>
       </DialogContent>
     </>
   );
