@@ -1,17 +1,27 @@
 import { createContext, useContext, useEffect, useState } from "react";
+
+import axios from "axios";
+import { format } from "date-fns";
 import {
   EventContextType,
   EventData,
   EventDataProviderProps,
 } from "./EventDataProvider.types";
-import axios from "axios";
-import { format } from "date-fns";
-import { useSnackbar } from "./SnackbarProvider";
+import { useSnackbar } from "../SnackbarState/SnackbarProvider";
+
+const defaultEvent = {
+  banner:
+    "https://www.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600nw-1037719192.jpg",
+  date: "NaN",
+  time: "NaN",
+  place: "NaN",
+  price: "NaN",
+  news: "NaN",
+  qr: "",
+};
 
 // Event data context
 const EventDataContext = createContext<EventContextType | undefined>(undefined);
-// Base API URL
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const EventDataProvider = ({ children }: EventDataProviderProps) => {
   const { showSnackbar } = useSnackbar();
@@ -24,33 +34,39 @@ export const EventDataProvider = ({ children }: EventDataProviderProps) => {
     news: "",
     qr: "",
   });
-  const api = axios.create({ baseURL: API_BASE_URL });
+  const api = axios.create({ baseURL: process.env.REACT_APP_API_BASE_URL });
 
   useEffect(() => {
     fetchCurrentEvent();
   }, []);
 
-  // Fetch current event data
+  /**
+   * Fetch current event data
+   */
   const fetchCurrentEvent = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/events/current`);
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/events/current`
+      );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      // Console log data fetched from BE
-      console.log("Data fetched from BE:", data);
-
       // Format the date to a dd.mm.yyyy format
       const formattedDate = format(new Date(data.date), "dd.MM.yyyy");
       // Update the context state
       setEventData({ ...data, date: formattedDate });
     } catch (error) {
-      //alert("There was a problem loading data...");
+      // Show default event data when
+      setEventData(defaultEvent);
+      showSnackbar("Fetching event data failed!", "warning");
     }
   };
 
-  // Create event and send event data to BE and Postgres DB
+  /**
+   * Create event and send event data to BE and Postgres DB
+   * @param data - Form data
+   */
   const createEvent = async (data: FormData) => {
     const response = await api.post("/events", data, {
       headers: {

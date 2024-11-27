@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid2";
 import useStyles from "./EventInfo.styles";
 import GADivider from "../../../../general/GADivider/GADivider";
 import { EventInfoProps } from "./EventInfo.types";
-import { useEvent } from "../../../../../stateManagement/EventDataProvider";
+import { useEvent } from "../../../../../stateManagement/EventState/EventDataProvider";
 
 const EventInfo = ({ isOpen }: EventInfoProps) => {
   const classes = useStyles();

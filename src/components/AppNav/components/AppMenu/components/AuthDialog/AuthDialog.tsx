@@ -2,7 +2,7 @@ import { Dialog } from "@mui/material";
 import useStyles from "../CreateEvent/CreateEvent.styles";
 import LoginContent from "./LoginContent/LoginContent";
 import RegisterContent from "./RegisterContent/RegisterContent";
-import { useAuth } from "../../../../../../stateManagement/AuthProvider";
+import { useAuth } from "../../../../../../stateManagement/AuthState/AuthProvider";
 
 const AuthDialog = () => {
   const classes = useStyles();

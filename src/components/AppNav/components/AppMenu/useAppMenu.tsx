@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { useAuth } from "../../../../stateManagement/AuthProvider";
+import { useAuth } from "../../../../stateManagement/AuthState/AuthProvider";
 import LoginIcon from "@mui/icons-material/Login";
 import EditCalendarIcon from "@mui/icons-material/EditCalendar";
 import GroupsIcon from "@mui/icons-material/Groups";
@@ -35,7 +35,10 @@ const useAppMenu = () => {
     setOpenParticipants(false);
   }, []);
 
-  // Handle rendering different actions depending on USER role
+  /**
+   * Handling of different actions depending on user role and token
+   * @returns speed dial actions for current user
+   */
   const getActionsDefinition = () => {
     const actions = [
       { icon: <LoginIcon />, name: "Přihlášení", action: handleOpenAuthDialog },
