@@ -1,13 +1,16 @@
 import AppLayout from "./components/AppLayout/AppLayout";
+import { AuthProvider } from "./stateManagement/AuthProvider";
 import { EventDataProvider } from "./stateManagement/EventDataProvider";
 import SnackbarProvider from "./stateManagement/SnackbarProvider";
 
 function App() {
   return (
     <SnackbarProvider>
-      <EventDataProvider>
-        <AppLayout />
-      </EventDataProvider>
+      <AuthProvider>
+        <EventDataProvider>
+          <AppLayout />
+        </EventDataProvider>
+      </AuthProvider>
     </SnackbarProvider>
   );
 }

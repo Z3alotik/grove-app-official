@@ -46,7 +46,7 @@ export const EventDataProvider = ({ children }: EventDataProviderProps) => {
       // Update the context state
       setEventData({ ...data, date: formattedDate });
     } catch (error) {
-      alert("There was a problem loading data...");
+      //alert("There was a problem loading data...");
     }
   };
 
