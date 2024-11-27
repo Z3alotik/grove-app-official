@@ -35,6 +35,7 @@ const useAppMenu = () => {
     setOpenParticipants(false);
   }, []);
 
+  // Handle rendering different actions depending on USER role
   const getActionsDefinition = () => {
     const actions = [
       { icon: <LoginIcon />, name: "Přihlášení", action: handleOpenAuthDialog },
@@ -50,20 +51,6 @@ const useAppMenu = () => {
       },
       { icon: <LogoutIcon />, name: "Odhlásit se", action: handleLogout },
     ];
-
-    //   if (!token) {
-    //     console.log("No token, no Role");
-    //     return actions.filter((action) => ["Přihlášení"].includes(action.name));
-    //   } else {
-    //     return hasRole("ROLE_USER")
-    //       ? actions.filter((action) => ["Odhlásit se"].includes(action.name))
-    //       : actions.filter((action) =>
-    //           ["Vytvořit událost", "Účastníci", "Odhlásit se"].includes(
-    //             action.name
-    //           )
-    //         );
-    //   }
-    // };
 
     if (!token) {
       return actions.filter((action) => ["Přihlášení"].includes(action.name));

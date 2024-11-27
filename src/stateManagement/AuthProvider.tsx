@@ -23,6 +23,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const api = axios.create({ baseURL: process.env.REACT_APP_API_BASE_URL });
 
+  // Fetch logged user data, save JWT token and check if token is expired or not
   useEffect(() => {
     const savedToken = localStorage.getItem("jwtToken");
     if (savedToken) {
@@ -33,8 +34,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setToken(savedToken);
       fetchUser(savedToken);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  /**
+   * Fetches logged user data
+   * @param jwtToken - JWT token
+   */
   const fetchUser = async (jwtToken: string) => {
     try {
       const response = await api.get("/auth/loggedUser", {
@@ -47,6 +53,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
+  /**
+   * Sends request to autheticate user via credentials
+   * @param credentials - Login credentials
+   */
   const handleLogin = async (credentials: CredentialProps) => {
     try {
       const response = await api.post("/auth/login", credentials);
@@ -66,6 +76,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
+  /**
+   * Sends request to create new user
+   * @param {UserDTO} newUser - User object
+   */
   const handleRegister = async (newUser: UserDTO) => {
     try {
       const response = await api.post("/auth/register", newUser);
@@ -75,12 +89,22 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       } else {
         showSnackbar("Registrace se nevydařila", "error");
       }
-    } catch (error) {
-      showSnackbar("Something went wrong!", "error");
-      console.error(error);
+    } catch (error: any) {
+      if (error.response.status === 409) {
+        showSnackbar(
+          "Uživatel s tímto E-mailem/Jménem už existuje !",
+          "warning"
+        );
+      } else {
+        showSnackbar("Something went wrong!", "error");
+        console.error(error);
+      }
     }
   };
 
+  /**
+   * Function for handling logout of users
+   */
   const handleLogout = () => {
     showSnackbar("Byl/a si odhlášen/a", "info");
     localStorage.removeItem("jwtToken");
@@ -100,6 +124,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setOpenAuthDialog(false);
   };
 
+  /**
+   * Helper function for checking users roles
+   * @param role - string
+   * @returns boolean value
+   */
   const hasRole = (role: string) => {
     return user?.roles?.some((r: Role) => r.name === role) || false;
   };

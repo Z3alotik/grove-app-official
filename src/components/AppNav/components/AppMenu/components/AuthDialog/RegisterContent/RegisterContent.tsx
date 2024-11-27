@@ -68,6 +68,7 @@ const RegisterContent = () => {
               size="small"
               label="Password"
               margin="dense"
+              type="password"
               value={state.password}
               onChange={(e) =>
                 dispatch({ type: "setPassword", payload: e.target.value })

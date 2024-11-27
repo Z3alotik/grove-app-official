@@ -53,6 +53,7 @@ const LoginContent = () => {
               className={classes.textField}
               size="small"
               label="Password"
+              type="password"
               margin="dense"
               value={state.password}
               onChange={(e) =>
