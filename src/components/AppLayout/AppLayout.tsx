@@ -6,7 +6,7 @@ import MusicSection from "../Sections/MusicSection/MusicSection";
 import { Element } from "react-scroll";
 import useStyles from "./AppLayout.styles";
 import RulesSection from "../Sections/RulesSection/RulesSection";
-import { useEvent } from "../../stateManagement/EventDataProvider";
+import { useEvent } from "../../stateManagement/EventState/EventDataProvider";
 
 const AppLayout = () => {
   const classes = useStyles();

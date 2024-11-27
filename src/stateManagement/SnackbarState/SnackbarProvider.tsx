@@ -1,10 +1,10 @@
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import {
   SnackbarContextType,
   SnackbarProviderProps,
 } from "./SnackbarProvider.types";
-import { AlertSeverity } from "../components/general/GASnackbar/GASnackbar.types";
-import GASnackbar from "../components/general/GASnackbar/GASnackbar";
+import { AlertSeverity } from "../../components/general/GASnackbar/GASnackbar.types";
+import GASnackbar from "../../components/general/GASnackbar/GASnackbar";
 
 const SnackbarContext = createContext<SnackbarContextType | undefined>(
   undefined

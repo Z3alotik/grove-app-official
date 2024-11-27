@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { AlertSeverity } from "../components/general/GASnackbar/GASnackbar.types";
+import { AlertSeverity } from "../../components/general/GASnackbar/GASnackbar.types";
 
 export interface SnackbarProviderProps {
   children: ReactNode;

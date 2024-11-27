@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-import { useSnackbar } from "./SnackbarProvider";
+
+import { isTokenExpired } from "../../utility/TokenExp";
 import {
   AuthContextType,
   AuthProviderProps,
@@ -9,7 +10,7 @@ import {
   User,
   UserDTO,
 } from "./AuthProvider.types";
-import { isTokenExpired } from "../utility/TokenExp";
+import { useSnackbar } from "../SnackbarState/SnackbarProvider";
 
 // Authentication context
 const AuthContext = createContext<AuthContextType | undefined>(undefined);

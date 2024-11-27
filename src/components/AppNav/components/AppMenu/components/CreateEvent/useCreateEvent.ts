@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { useEvent } from "../../../../../../stateManagement/EventDataProvider";
+import { useEvent } from "../../../../../../stateManagement/EventState/EventDataProvider";
 import { CreateEventHookProps } from "./CreateEvent.types";
 import { formatTime } from "../../../../../../utility/DatetimeFormatting";
 
@@ -13,32 +13,33 @@ const initialState = {
   qr: "",
 };
 
+const reducer = (state: any, action: { type: string; payload?: any }) => {
+  switch (action.type) {
+    case "setDate":
+      return { ...state, date: action.payload };
+    case "setTime":
+      return { ...state, time: action.payload };
+    case "setPlace":
+      return { ...state, place: action.payload };
+    case "setPrice":
+      return { ...state, price: action.payload };
+    case "setNews":
+      return { ...state, news: action.payload };
+    case "setBanner":
+      return {
+        ...state,
+        banner: action.payload,
+      };
+    case "setQr":
+      return { ...state, qr: action.payload };
+    case "resetState":
+      return initialState;
+    default:
+      throw new Error("Nothing to do !!");
+  }
+};
+
 const useCreateEvent = ({ handleCloseCreateEvent }: CreateEventHookProps) => {
-  const reducer = (state: any, action: { type: string; payload?: any }) => {
-    switch (action.type) {
-      case "setDate":
-        return { ...state, date: action.payload };
-      case "setTime":
-        return { ...state, time: action.payload };
-      case "setPlace":
-        return { ...state, place: action.payload };
-      case "setPrice":
-        return { ...state, price: action.payload };
-      case "setNews":
-        return { ...state, news: action.payload };
-      case "setBanner":
-        return {
-          ...state,
-          banner: action.payload,
-        };
-      case "setQr":
-        return { ...state, qr: action.payload };
-      case "resetState":
-        return initialState;
-      default:
-        throw new Error("Nothing to do !!");
-    }
-  };
   const [state, dispatch] = useReducer(reducer, initialState);
   const { createEvent } = useEvent();
 

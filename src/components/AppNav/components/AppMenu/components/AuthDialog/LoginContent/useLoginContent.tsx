@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { useAuth } from "../../../../../../../stateManagement/AuthProvider";
+import { useAuth } from "../../../../../../../stateManagement/AuthState/AuthProvider";
 
 const initialState = {
   email: "",
