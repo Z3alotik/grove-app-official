@@ -2,15 +2,16 @@ import { Dialog } from "@mui/material";
 import useStyles from "../CreateEvent/CreateEvent.styles";
 import LoginContent from "./LoginContent/LoginContent";
 import RegisterContent from "./RegisterContent/RegisterContent";
-import { AuthDialogProps } from "./AuthDialog.types";
+import { useAuth } from "../../../../../../stateManagement/AuthProvider";
 
-const AuthDialog = ({
-  openAuthDialog,
-  handleCloseAuthDialog,
-  isLogin,
-  handleChangeAuthContent,
-}: AuthDialogProps) => {
+const AuthDialog = () => {
   const classes = useStyles();
+  const {
+    openAuthDialog,
+    handleCloseAuthDialog,
+    isLogin,
+    handleChangeAuthContent,
+  } = useAuth();
 
   return (
     <Dialog

@@ -1,6 +1,5 @@
-import axios from "axios";
-import { useEffect, useReducer } from "react";
-import { useSnackbar } from "../../../../../../../stateManagement/SnackbarProvider";
+import { useReducer } from "react";
+import { useAuth } from "../../../../../../../stateManagement/AuthProvider";
 
 const initialState = {
   name: "",
@@ -9,10 +8,6 @@ const initialState = {
 };
 
 const useRegisterContent = () => {
-  const api = axios.create({
-    baseURL: process.env.REACT_APP_API_BASE_URL,
-  });
-
   const reducer = (state: any, action: { type: string; payload?: any }) => {
     switch (action.type) {
       case "setName":
@@ -28,14 +23,10 @@ const useRegisterContent = () => {
     }
   };
 
+  const { handleRegister } = useAuth();
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { showSnackbar } = useSnackbar();
 
-  useEffect(() => {
-    console.log("State has been updated:", state);
-  }, [state]);
-
-  const handleRegister = async (e: any) => {
+  const handleRegisterSubmit = (e: any) => {
     e.preventDefault();
 
     const newUser = {
@@ -44,25 +35,13 @@ const useRegisterContent = () => {
       password: state.password,
     };
 
-    console.log("New user to register:", newUser);
-
-    try {
-      const response = await api.post("/auth/register", newUser);
-      if (response.status === 201) {
-        showSnackbar("Registrace proběhla úspěšně", "success");
-      } else {
-        showSnackbar("Registrace se nevydařila", "error");
-      }
-    } catch (error) {
-      showSnackbar("Something went wrong!", "error");
-      console.error(error);
-    }
+    handleRegister(newUser);
   };
 
   return {
     state,
     dispatch,
-    handleRegister,
+    handleRegisterSubmit,
   };
 };
 

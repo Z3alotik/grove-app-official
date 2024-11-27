@@ -15,7 +15,7 @@ import useRegisterContent from "./useRegisterContent";
 
 const RegisterContent = () => {
   const classes = useStyles();
-  const { state, dispatch, handleRegister } = useRegisterContent();
+  const { state, dispatch, handleRegisterSubmit } = useRegisterContent();
   return (
     <>
       <DialogTitle
@@ -93,7 +93,7 @@ const RegisterContent = () => {
               fontFamily: "Bebas Neue",
               fontSize: "1.5rem",
             }}
-            onClick={handleRegister}
+            onClick={handleRegisterSubmit}
           >
             {"Registrovat"}
           </Button>

@@ -3,16 +3,12 @@ import useStyles from "./AppMenu.styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import useAppMenu from "./useAppMenu";
 import CreateEvent from "./components/CreateEvent/CreateEvent";
-import { getActionsDefinition } from "./AppMenu.consts";
 import AuthDialog from "./components/AuthDialog/AuthDialog";
 import ParticipantsDialog from "./components/ParticipantsDialog/ParticipantsDialog";
 
 const AppMenu = () => {
   const classes = useStyles();
   const {
-    handleOpenCreateEvent,
-    handleOpenAuthDialog,
-    handleOpenParticipants,
     handleCloseParticipants,
     handleCloseMenu,
     handleOpenMenu,
@@ -20,17 +16,10 @@ const AppMenu = () => {
     openMenu,
     openCreateEvent,
     handleCloseCreateEvent,
-    openAuthDialog,
-    handleCloseAuthDialog,
-    isLogin,
-    handleChangeAuthContent,
+    getActionsDefinition,
   } = useAppMenu();
 
-  const actions = getActionsDefinition({
-    handleOpenCreateEvent,
-    handleOpenAuthDialog,
-    handleOpenParticipants,
-  });
+  const actions = getActionsDefinition();
 
   return (
     <>
@@ -45,7 +34,7 @@ const AppMenu = () => {
           open={openMenu}
           direction="left"
         >
-          {actions.map((action) => (
+          {actions?.map((action) => (
             <SpeedDialAction
               className={classes.speedDialAction}
               key={action.name}
@@ -56,12 +45,7 @@ const AppMenu = () => {
           ))}
         </SpeedDial>
       </Box>
-      <AuthDialog
-        openAuthDialog={openAuthDialog}
-        handleCloseAuthDialog={handleCloseAuthDialog}
-        handleChangeAuthContent={handleChangeAuthContent}
-        isLogin={isLogin}
-      />
+      <AuthDialog />
       <CreateEvent
         openCreateEvent={openCreateEvent}
         handleCloseCreateEvent={handleCloseCreateEvent}

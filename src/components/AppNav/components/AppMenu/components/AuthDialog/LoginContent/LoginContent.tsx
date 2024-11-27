@@ -16,7 +16,7 @@ import useLoginContent from "./useLoginContent";
 
 const LoginContent = () => {
   const classes = useStyles();
-  const { state, dispatch, handleLogin } = useLoginContent();
+  const { state, dispatch, handleLoginSubmit } = useLoginContent();
   return (
     <>
       <DialogTitle
@@ -95,7 +95,7 @@ const LoginContent = () => {
               fontFamily: "Bebas Neue",
               fontSize: "1.5rem",
             }}
-            onClick={handleLogin}
+            onClick={handleLoginSubmit}
           >
             {"Přihlásit se"}
           </Button>

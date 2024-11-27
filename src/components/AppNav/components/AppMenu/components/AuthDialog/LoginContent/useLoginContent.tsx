@@ -1,14 +1,13 @@
 import { useReducer } from "react";
-import { useSnackbar } from "../../../../../../../stateManagement/SnackbarProvider";
-import axios from "axios";
+import { useAuth } from "../../../../../../../stateManagement/AuthProvider";
 
 const useLoginContent = () => {
+  const { handleLogin } = useAuth();
+
   const initialState = {
     email: "",
     password: "",
   };
-
-  const api = axios.create({ baseURL: process.env.REACT_APP_API_BASE_URL });
 
   const reducer = (state: any, action: { type: string; payload?: any }) => {
     switch (action.type) {
@@ -20,35 +19,23 @@ const useLoginContent = () => {
         return initialState;
     }
   };
-
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { showSnackbar } = useSnackbar();
 
-  const handleLogin = async (e: any) => {
+  const handleLoginSubmit = (e: any) => {
     e.preventDefault();
 
-    const userObj = {
+    const credentials = {
       email: state.email,
       password: state.password,
     };
 
-    const response = await api.post("/auth/login", userObj);
-    if (response.status === 200) {
-      showSnackbar("Přihlášení proběhlo úspěšně, vítej", "success");
-      localStorage.setItem("jwtToken", response.data.accessToken);
-    } else {
-      showSnackbar("Přihlášení se nevydařilo", "error");
-    }
-  };
-
-  const handleLogout = async (e: any) => {
-    e.preventDefault();
+    handleLogin(credentials);
   };
 
   return {
     state,
     dispatch,
-    handleLogin,
+    handleLoginSubmit,
   };
 };
 
