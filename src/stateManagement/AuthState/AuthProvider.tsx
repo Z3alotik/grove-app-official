@@ -1,5 +1,11 @@
 import axios from "axios";
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 import { isTokenExpired } from "../../utility/TokenExp";
 import {
@@ -24,6 +30,37 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const api = axios.create({ baseURL: process.env.REACT_APP_API_BASE_URL });
 
+  /**
+   * Function for handling logout of users
+   */
+  const handleLogout = useCallback(() => {
+    showSnackbar("Byl/a si odhlášen/a", "info");
+    localStorage.removeItem("jwtToken");
+    setToken("");
+    setUser(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  /**
+   * Fetches logged user data
+   * @param jwtToken - JWT token
+   */
+  const fetchUser = useCallback(
+    async (jwtToken: string) => {
+      try {
+        const response = await api.get("/auth/loggedUser", {
+          headers: { Authorization: `Bearer ${jwtToken}` },
+        });
+        setUser(response.data);
+      } catch (err) {
+        console.error("Failed to fetch user:", err);
+        handleLogout();
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [handleLogout]
+  );
+
   // Fetch logged user data, save JWT token and check if token is expired or not
   useEffect(() => {
     const savedToken = localStorage.getItem("jwtToken");
@@ -36,23 +73,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       fetchUser(savedToken);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  /**
-   * Fetches logged user data
-   * @param jwtToken - JWT token
-   */
-  const fetchUser = async (jwtToken: string) => {
-    try {
-      const response = await api.get("/auth/loggedUser", {
-        headers: { Authorization: `Bearer ${jwtToken}` },
-      });
-      setUser(response.data);
-    } catch (err) {
-      console.error("Failed to fetch user:", err);
-      handleLogout();
-    }
-  };
+  }, [fetchUser]);
 
   /**
    * Sends request to autheticate user via credentials
@@ -72,8 +93,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         showSnackbar("Přihlášení se nevydařilo", "error");
       }
     } catch (err) {
-      showSnackbar("Something went wrong!", "error");
-      throw err;
+      if (err) {
+        handleLoginErrors(err);
+      } else {
+        showSnackbar("Something went wrong!", "error");
+        console.error(err);
+      }
     }
   };
 
@@ -90,27 +115,54 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       } else {
         showSnackbar("Registrace se nevydařila", "error");
       }
-    } catch (error: any) {
-      if (error.response.status === 409) {
-        showSnackbar(
-          "Uživatel s tímto E-mailem/Jménem už existuje !",
-          "warning"
-        );
+    } catch (err) {
+      if (err) {
+        handleRegisterErrors(err);
       } else {
         showSnackbar("Something went wrong!", "error");
-        console.error(error);
+        console.error(err);
       }
     }
   };
 
   /**
-   * Function for handling logout of users
+   * Handles register form errors
+   * @param error - error from response
+   * @returns
    */
-  const handleLogout = () => {
-    showSnackbar("Byl/a si odhlášen/a", "info");
-    localStorage.removeItem("jwtToken");
-    setToken("");
-    setUser(null);
+  const handleRegisterErrors = (error: any) => {
+    switch (error.response.status) {
+      case 409:
+        return showSnackbar(
+          "Uživatel s tímto emailem/jménem už existuje",
+          "error"
+        );
+      case 400:
+        return handleFieldValidation(error.response.data);
+    }
+  };
+
+  /**
+   * Handles register form errors
+   * @param error - error from response
+   */
+  const handleLoginErrors = (error: any) => {
+    switch (error.response.status) {
+      case 401:
+        return showSnackbar("Přihlašovací údaje jsou nesprávné", "error");
+      case 400:
+        return handleFieldValidation(error.response.data);
+    }
+  };
+
+  /**
+   * Handles validations for fields.
+   * @param errorData - field errors
+   */
+  const handleFieldValidation = (errorData: any) => {
+    Object.entries(errorData).forEach((value) => {
+      showSnackbar(`${value[1]}`, "warning");
+    });
   };
 
   const handleChangeAuthContent = () => {

@@ -1,10 +1,17 @@
-import { Backdrop, Box, SpeedDial, SpeedDialAction } from "@mui/material";
+import {
+  Avatar,
+  Backdrop,
+  Box,
+  SpeedDial,
+  SpeedDialAction,
+} from "@mui/material";
 import useStyles from "./AppMenu.styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import useAppMenu from "./useAppMenu";
 import CreateEvent from "./components/CreateEvent/CreateEvent";
 import AuthDialog from "./components/AuthDialog/AuthDialog";
 import ParticipantsDialog from "./components/ParticipantsDialog/ParticipantsDialog";
+import { useAuth } from "../../../../stateManagement/AuthState/AuthProvider";
 
 const AppMenu = () => {
   const classes = useStyles();
@@ -20,6 +27,7 @@ const AppMenu = () => {
   } = useAppMenu();
 
   const actions = getActionsDefinition();
+  const { token } = useAuth();
 
   return (
     <>
@@ -28,7 +36,17 @@ const AppMenu = () => {
         <SpeedDial
           className={classes.speedDial}
           ariaLabel="AppMenu"
-          icon={<MenuIcon />}
+          icon={
+            token ? (
+              <Avatar
+                alt="userProfile"
+                src="https://www.svgrepo.com/show/382095/female-avatar-girl-face-woman-user-4.svg"
+                sx={{ width: 40, height: 40 }}
+              />
+            ) : (
+              <MenuIcon />
+            )
+          }
           onClose={handleCloseMenu}
           onOpen={handleOpenMenu}
           open={openMenu}
