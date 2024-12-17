@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 import axios from "axios";
 import { format } from "date-fns";
@@ -8,6 +14,7 @@ import {
   EventDataProviderProps,
 } from "./EventDataProvider.types";
 import { useSnackbar } from "../SnackbarState/SnackbarProvider";
+import { useAuth } from "../AuthState/AuthProvider";
 
 const defaultEvent = {
   banner:
@@ -24,6 +31,7 @@ const defaultEvent = {
 const EventDataContext = createContext<EventContextType | undefined>(undefined);
 
 export const EventDataProvider = ({ children }: EventDataProviderProps) => {
+  const { token } = useAuth();
   const { showSnackbar } = useSnackbar();
   const [eventData, setEventData] = useState<EventData>({
     banner: "",
@@ -36,17 +44,17 @@ export const EventDataProvider = ({ children }: EventDataProviderProps) => {
   });
   const api = axios.create({ baseURL: process.env.REACT_APP_API_BASE_URL });
 
-  useEffect(() => {
-    fetchCurrentEvent();
-  }, []);
-
   /**
    * Fetch current event data
    */
-  const fetchCurrentEvent = async () => {
+  const fetchCurrentEvent = useCallback(async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/events/current`
+        `${process.env.REACT_APP_API_BASE_URL}/events/current`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          credentials: "include",
+        }
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -57,29 +65,62 @@ export const EventDataProvider = ({ children }: EventDataProviderProps) => {
       // Update the context state
       setEventData({ ...data, date: formattedDate });
     } catch (error) {
-      // Show default event data when
+      // Show default event data
       setEventData(defaultEvent);
-      showSnackbar("Fetching event data failed!", "warning");
+      // showSnackbar("Fetching event data failed!", "warning");
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
+
+  useEffect(() => {
+    fetchCurrentEvent();
+  }, [fetchCurrentEvent]);
 
   /**
    * Create event and send event data to BE and Postgres DB
    * @param data - Form data
    */
   const createEvent = async (data: FormData) => {
-    const response = await api.post("/events", data, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    if (response.status === 201) {
-      console.log("Data sent to BE:", response.data);
-      fetchCurrentEvent();
-      showSnackbar("Nová událost vytvořena", "success");
-    } else {
-      showSnackbar("Událost nebylo možné vytvořit", "error");
+    try {
+      const response = await api.post("/events", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      });
+      if (response.status === 201) {
+        fetchCurrentEvent();
+        showSnackbar("Nová událost vytvořena", "success");
+      } else {
+        showSnackbar("Událost nebylo možné vytvořit", "error");
+      }
+    } catch (err) {
+      if (err) {
+        handleEventFormErrors(err);
+      } else {
+        showSnackbar("Something went wrong!", "error");
+        console.error(err);
+      }
     }
+  };
+
+  /**
+   * Handles register form errors
+   * @param error - error from response
+   */
+  const handleEventFormErrors = (error: any) => {
+    handleFieldValidation(error.response.data);
+  };
+
+  /**
+   * Handles validations for fields.
+   * @param errorData - field errors
+   */
+  const handleFieldValidation = (errorData: any) => {
+    Object.entries(errorData).forEach((value) => {
+      showSnackbar(`${value[1]}`, "warning");
+    });
   };
 
   return (
