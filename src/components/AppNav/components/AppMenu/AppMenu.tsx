@@ -7,11 +7,11 @@ import {
 } from "@mui/material";
 import useStyles from "./AppMenu.styles";
 import MenuIcon from "@mui/icons-material/Menu";
-import useAppMenu from "./useAppMenu";
 import CreateEvent from "./components/CreateEvent/CreateEvent";
 import AuthDialog from "./components/AuthDialog/AuthDialog";
 import ParticipantsDialog from "./components/ParticipantsDialog/ParticipantsDialog";
 import { useAuth } from "../../../../stateManagement/AuthState/AuthProvider";
+import useAppMenu from "./useAppMenu";
 
 const AppMenu = () => {
   const classes = useStyles();
