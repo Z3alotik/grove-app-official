@@ -14,8 +14,8 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
   },
   qrImage: {
-    width: "25%",
-    paddingTop: "25%",
+    width: "60%",
+    paddingTop: "60%",
   },
   infoHeader: {
     fontSize: "2rem",
@@ -35,6 +35,8 @@ const useStyles = makeStyles(() => ({
     background: "linear-gradient(to right, black, transparent 50%, black)",
     backdropFilter: "blur(15px)",
     webkitBackdropFilter: "blur(5px)",
+    display: "flex",
+    alignItems: "center",
   },
 }));
 
