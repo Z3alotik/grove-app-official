@@ -50,11 +50,7 @@ export const EventDataProvider = ({ children }: EventDataProviderProps) => {
   const fetchCurrentEvent = useCallback(async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/events/current`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-          credentials: "include",
-        }
+        `${process.env.REACT_APP_API_BASE_URL}/events/current`
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

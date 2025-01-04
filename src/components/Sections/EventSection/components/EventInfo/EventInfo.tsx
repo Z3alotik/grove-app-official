@@ -80,11 +80,7 @@ const EventInfo = ({ isOpen }: EventInfoProps) => {
                 margin: "20px",
               }}
             >
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                feugiat, eros nec faucibus fermentum, dolor justo venenatis
-                libero, a tincidunt elit tortor a urna.
-              </span>
+              <span>{eventData.news}</span>
             </Grid>
           </Grid>
         </Grid>
