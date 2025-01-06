@@ -38,5 +38,5 @@ export type User = {
   id: string;
   name: string;
   email: string;
-  roles: Role[]; // Adjust to match your data (e.g., string[] or a specific role type)
+  roles: Role[];
 };

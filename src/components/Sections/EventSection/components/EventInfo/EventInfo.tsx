@@ -1,12 +1,14 @@
-import { Box, CardMedia, Divider, Fade } from "@mui/material";
+import { Box, Button, CardMedia, Divider, Fade } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import useStyles from "./EventInfo.styles";
 import { EventInfoProps } from "./EventInfo.types";
 import { useEvent } from "../../../../../stateManagement/EventState/EventDataProvider";
+import { useAuth } from "../../../../../stateManagement/AuthState/AuthProvider";
 
 const EventInfo = ({ isOpen }: EventInfoProps) => {
   const classes = useStyles();
-  const { eventData } = useEvent();
+  const { eventData, handleParticipate, isParticipating } = useEvent();
+  const { token } = useAuth();
   return (
     <Fade in={isOpen}>
       <Box className={classes.box}>
@@ -82,6 +84,33 @@ const EventInfo = ({ isOpen }: EventInfoProps) => {
             >
               <span>{eventData.news}</span>
             </Grid>
+            {token && (
+              <Grid
+                size={6}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "20px",
+                }}
+              >
+                <Button
+                  variant="contained"
+                  sx={{
+                    zIndex: 100,
+                    color: "black",
+                    backgroundColor: "white",
+                    fontFamily: "Bebas Neue",
+                    fontSize: "2rem",
+                  }}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    handleParticipate();
+                  }}
+                >
+                  {"Zúčastním se"}
+                </Button>
+              </Grid>
+            )}
           </Grid>
         </Grid>
       </Box>
