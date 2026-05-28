@@ -6,43 +6,19 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-
-type Participant = {
-  name: string;
-  attends: boolean;
-  paid: boolean;
-};
+import { Participant } from "../../../../../../../../stateManagement/EventState/EventDataProvider.types";
+import { useEvent } from "../../../../../../../../stateManagement/EventState/EventDataProvider";
 
 type Column = {
   title: string;
   field: keyof Participant; // Enforce that field matches keys of Participant
 };
 
-const columns: Column[] = [
-  { title: "Jméno", field: "name" },
-  { title: "Zúčastní se", field: "attends" },
-  { title: "Zaplatil/a", field: "paid" },
-];
-
-const dullData: Participant[] = [
-  { name: "Tomáš Stach", attends: true, paid: false },
-  { name: "Radek Killinger", attends: true, paid: true },
-  { name: "Aleš Gobel", attends: true, paid: false },
-  { name: "Tomáš Tříska", attends: false, paid: false },
-  { name: "Martin Bartošek", attends: false, paid: true },
-  { name: "Tomáš Stach", attends: true, paid: false },
-  { name: "Radek Killinger", attends: true, paid: true },
-  { name: "Aleš Gobel", attends: true, paid: false },
-  { name: "Tomáš Tříska", attends: false, paid: false },
-  { name: "Martin Bartošek", attends: false, paid: true },
-  { name: "Tomáš Stach", attends: true, paid: false },
-  { name: "Radek Killinger", attends: true, paid: true },
-  { name: "Aleš Gobel", attends: true, paid: false },
-  { name: "Tomáš Tříska", attends: false, paid: false },
-  { name: "Martin Bartošek", attends: false, paid: true },
-];
+const columns: Column[] = [{ title: "Jméno", field: "name" }];
 
 const ParticipantsTable = () => {
+  const { participants } = useEvent();
+
   return (
     <TableContainer
       sx={{
@@ -72,7 +48,7 @@ const ParticipantsTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {dullData.map((data, index) => (
+          {participants.map((data, index) => (
             <TableRow
               key={index}
               sx={{
@@ -98,11 +74,11 @@ const ParticipantsTable = () => {
                           : "white",
                     }}
                   >
-                    {typeof value === "boolean"
+                    {/* {typeof value === "boolean"
                       ? value
                         ? "Ano"
                         : "Ne"
-                      : value}
+                      : value} */}
                   </TableCell>
                 );
               })}

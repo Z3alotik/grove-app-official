@@ -1,7 +1,7 @@
 import useStyles from "./AppNav.styles";
 import AppMenu from "./components/AppMenu/AppMenu";
 import { navButtons } from "./AppNav.consts";
-import GALinkButton from "../general/GALinkButton/GALinkButton";
+import GALinkButton from "../General/GALinkButton/GALinkButton";
 
 const AppNav = () => {
   const classes = useStyles();

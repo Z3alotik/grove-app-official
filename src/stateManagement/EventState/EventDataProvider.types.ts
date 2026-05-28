@@ -17,6 +17,7 @@ export interface EventContextType {
   handleFetchParticipants: () => void;
   handleParticipate: () => void;
   isParticipating: boolean;
+  participants: Participant[];
 }
 
 export interface EventDataProviderProps {

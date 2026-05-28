@@ -4,12 +4,14 @@ import LoginIcon from "@mui/icons-material/Login";
 import EditCalendarIcon from "@mui/icons-material/EditCalendar";
 import GroupsIcon from "@mui/icons-material/Groups";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { useEvent } from "../../../../stateManagement/EventState/EventDataProvider";
 
 const useAppMenu = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [openCreateEvent, setOpenCreateEvent] = useState(false);
   const [openParticipants, setOpenParticipants] = useState(false);
   const { handleOpenAuthDialog, handleLogout, token, hasRole } = useAuth();
+  const { handleFetchParticipants } = useEvent();
 
   const handleOpenMenu = () => {
     setOpenMenu(true);
@@ -29,7 +31,8 @@ const useAppMenu = () => {
 
   const handleOpenParticipants = useCallback(() => {
     setOpenParticipants(true);
-  }, []);
+    handleFetchParticipants();
+  }, [handleFetchParticipants]);
 
   const handleCloseParticipants = useCallback(() => {
     setOpenParticipants(false);
