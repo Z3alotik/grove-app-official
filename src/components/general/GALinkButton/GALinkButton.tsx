@@ -1,7 +1,7 @@
 import { IconButton, Tooltip } from "@mui/material";
 import { Link } from "react-scroll";
-import useStyles from "./GALinkButton.styles";
 import { GALinkButtonProps } from "./GALinkButton.types";
+import useStyles from "./GALinkButton.styles";
 
 const GALinkButton = ({ linkTag, title, iconChildren }: GALinkButtonProps) => {
   const classes = useStyles();

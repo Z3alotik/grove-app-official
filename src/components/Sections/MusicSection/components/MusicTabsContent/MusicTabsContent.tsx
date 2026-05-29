@@ -1,4 +1,4 @@
-import GAGenre from "../../../../general/GAGenre/GAGenre";
+import GAGenre from "../../../../General/GAGenre/GAGenre";
 import { MusicTabsProps } from "./MusicTabsContent.types";
 import { genreURLs } from "./MusicTabsContent.consts";
 

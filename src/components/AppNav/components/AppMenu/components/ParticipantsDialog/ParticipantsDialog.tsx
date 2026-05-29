@@ -1,34 +1,22 @@
-import { Dialog, DialogTitle, Divider } from "@mui/material";
-import useStyles from "./ParticipantsDialog.styles";
 import { ParticipantsDialogProps } from "./ParticipantsDialog.types";
 import ParticipantsTable from "./components/ParticipantsTable/ParticipantsTable";
+import { GADialog } from "../../../../../General/GADialog/GADialog";
 
 const ParticipantsDialog = ({
   openParticipants,
   handleCloseParticipants,
 }: ParticipantsDialogProps) => {
-  const classes = useStyles();
-
   return (
-    <Dialog
-      className={classes.dialog}
+    <GADialog
       open={openParticipants}
       onClose={handleCloseParticipants}
+      title="Účastníci"
+      dividers="both"
+      size="lg"
+      hideAcceptButton
     >
-      <DialogTitle
-        sx={{
-          color: "white",
-          fontFamily: "Bebas Neue",
-          fontSize: "1.5rem",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        Účastníci
-      </DialogTitle>
-      <Divider variant="middle" sx={{ borderColor: "white" }} />
       <ParticipantsTable />
-    </Dialog>
+    </GADialog>
   );
 };
 

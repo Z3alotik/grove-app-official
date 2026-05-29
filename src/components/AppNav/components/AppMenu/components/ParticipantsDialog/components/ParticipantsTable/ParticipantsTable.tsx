@@ -5,107 +5,108 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Chip,
 } from "@mui/material";
-
-type Participant = {
-  name: string;
-  attends: boolean;
-  paid: boolean;
-};
+import { Participant } from "../../../../../../../../stateManagement/EventState/EventDataProvider.types";
+import { useEvent } from "../../../../../../../../stateManagement/EventState/EventDataProvider";
 
 type Column = {
   title: string;
-  field: keyof Participant; // Enforce that field matches keys of Participant
+  field: keyof Participant;
 };
 
 const columns: Column[] = [
-  { title: "Jméno", field: "name" },
-  { title: "Zúčastní se", field: "attends" },
-  { title: "Zaplatil/a", field: "paid" },
-];
-
-const dullData: Participant[] = [
-  { name: "Tomáš Stach", attends: true, paid: false },
-  { name: "Radek Killinger", attends: true, paid: true },
-  { name: "Aleš Gobel", attends: true, paid: false },
-  { name: "Tomáš Tříska", attends: false, paid: false },
-  { name: "Martin Bartošek", attends: false, paid: true },
-  { name: "Tomáš Stach", attends: true, paid: false },
-  { name: "Radek Killinger", attends: true, paid: true },
-  { name: "Aleš Gobel", attends: true, paid: false },
-  { name: "Tomáš Tříska", attends: false, paid: false },
-  { name: "Martin Bartošek", attends: false, paid: true },
-  { name: "Tomáš Stach", attends: true, paid: false },
-  { name: "Radek Killinger", attends: true, paid: true },
-  { name: "Aleš Gobel", attends: true, paid: false },
-  { name: "Tomáš Tříska", attends: false, paid: false },
-  { name: "Martin Bartošek", attends: false, paid: true },
+  {
+    title: "Jméno",
+    field: "name",
+  },
+  {
+    title: "Zaplaceno",
+    field: "hasPaid",
+  },
 ];
 
 const ParticipantsTable = () => {
+  const { participants } = useEvent();
+
   return (
     <TableContainer
       sx={{
-        maxHeight: 440,
-        margin: "20px",
+        maxHeight: 500,
         width: "auto",
-        boxShadow: "0px 40px 10px rgba(0, 0, 0, 0.1)",
+        borderRadius: 1,
+        overflow: "hidden",
+        boxShadow: "0px 4px 20px rgba(0,0,0,0.15)",
+        backgroundColor: "#16232c",
+        overflowY: "auto",
       }}
     >
       <Table stickyHeader>
-        <TableHead sx={{ borderRadius: "10px" }}>
+        <TableHead>
           <TableRow
             sx={{
               "& th": {
                 textAlign: "center",
                 fontFamily: "Bebas Neue",
                 fontSize: "1rem",
-                color: "black",
+                backgroundColor: "#223544",
+                color: "white",
+                borderBottom: "none",
               },
             }}
           >
             {columns.map((column) => (
-              <TableCell key={column.field} width={300}>
-                {column.title}
-              </TableCell>
+              <TableCell key={column.field}>{column.title}</TableCell>
             ))}
           </TableRow>
         </TableHead>
+
         <TableBody>
-          {dullData.map((data, index) => (
+          {participants.map((participant, index) => (
             <TableRow
-              key={index}
+              key={`${participant.name}-${index}`}
               sx={{
+                transition: "0.2s ease",
+
+                "&:nth-of-type(even)": {
+                  backgroundColor: "#1b2b36",
+                },
+
+                "&:nth-of-type(odd)": {
+                  backgroundColor: "#16232c",
+                },
+
                 "&:hover": {
-                  backgroundColor: "#1e313f", // Hover background color
+                  backgroundColor: "#284152",
+                },
+
+                "& td": {
+                  borderBottom: "1px solid rgba(255,255,255,0.05)",
                 },
               }}
             >
-              {columns.map((column) => {
-                const value = data[column.field];
-                return (
-                  <TableCell
-                    key={column.field}
-                    sx={{
-                      fontSize: "1rem",
-                      fontFamily: "Teko",
-                      textAlign: "center",
-                      color:
-                        typeof value === "boolean"
-                          ? value
-                            ? "green"
-                            : "red"
-                          : "white",
-                    }}
-                  >
-                    {typeof value === "boolean"
-                      ? value
-                        ? "Ano"
-                        : "Ne"
-                      : value}
-                  </TableCell>
-                );
-              })}
+              <TableCell
+                align="center"
+                sx={{
+                  fontSize: "1rem",
+                  fontFamily: "Teko",
+                  color: "white",
+                }}
+              >
+                {participant.name}
+              </TableCell>
+
+              <TableCell align="center">
+                <Chip
+                  label={participant.hasPaid ? "Ano" : "Ne"}
+                  color={participant.hasPaid ? "success" : "error"}
+                  size="small"
+                  sx={{
+                    fontWeight: 600,
+                    minWidth: 70,
+                  }}
+                />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
