@@ -1,106 +1,81 @@
-import {
-  Button,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Divider,
-  FormControl,
-  TextField,
-} from "@mui/material";
+import { FormControl, TextField } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import LockIcon from "@mui/icons-material/Lock";
-import useStyles from "../../CreateEvent/CreateEvent.styles";
 import EmailIcon from "@mui/icons-material/Email";
-import useRegisterContent from "./useRegisterContent";
 
-const RegisterContent = () => {
-  const classes = useStyles();
-  const { state, dispatch, handleRegisterSubmit } = useRegisterContent();
+const RegisterContent = ({
+  state,
+  dispatch,
+}: {
+  state: any;
+  dispatch: any;
+}) => {
   return (
-    <>
-      <DialogTitle
-        sx={{
-          color: "white",
-          fontFamily: "Bebas Neue",
-          fontSize: "1.5rem",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        Registrace
-      </DialogTitle>
-      <Divider variant="middle" sx={{ borderColor: "white" }} />
-      <DialogContent>
-        <FormControl className={classes.eventForm}>
-          <div className={classes.iconTextField}>
-            <TextField
-              className={classes.textField}
-              size="small"
-              label="E-mail"
-              margin="dense"
-              value={state.email}
-              onChange={(e) =>
-                dispatch({ type: "setEmail", payload: e.target.value })
-              }
-            />
-            <EmailIcon
-              sx={{ color: "white", position: "absolute", right: 10 }}
-            />
-          </div>
-          <div className={classes.iconTextField}>
-            <TextField
-              className={classes.textField}
-              size="small"
-              label="Name"
-              margin="dense"
-              value={state.name}
-              onChange={(e) =>
-                dispatch({ type: "setName", payload: e.target.value })
-              }
-            />
-            <PersonIcon
-              sx={{ color: "white", position: "absolute", right: 10 }}
-            />
-          </div>
-          <div className={classes.iconTextField}>
-            <TextField
-              className={classes.textField}
-              size="small"
-              label="Password"
-              margin="dense"
-              type="password"
-              value={state.password}
-              onChange={(e) =>
-                dispatch({ type: "setPassword", payload: e.target.value })
-              }
-            />
-            <LockIcon
-              sx={{ color: "white", position: "absolute", right: 10 }}
-            />
-          </div>
-        </FormControl>
-        <DialogActions
+    <FormControl sx={{ display: "flex", gap: 2 }}>
+      <div style={{ position: "relative" }}>
+        <TextField
+          fullWidth
+          size="small"
+          label="E-mail"
+          value={state.email}
+          onChange={(e) =>
+            dispatch({ type: "setEmail", payload: e.target.value })
+          }
+        />
+        <EmailIcon
           sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            color: "common.white",
+            position: "absolute",
+            right: 12,
+            top: "50%",
+            transform: "translateY(-50%)",
           }}
-        >
-          <Button
-            variant="contained"
-            sx={{
-              color: "black",
-              backgroundColor: "white",
-              fontFamily: "Bebas Neue",
-              fontSize: "1.5rem",
-            }}
-            onClick={handleRegisterSubmit}
-          >
-            {"Registrovat"}
-          </Button>
-        </DialogActions>
-      </DialogContent>
-    </>
+        />
+      </div>
+
+      <div style={{ position: "relative" }}>
+        <TextField
+          fullWidth
+          size="small"
+          label="Name"
+          value={state.name}
+          onChange={(e) =>
+            dispatch({ type: "setName", payload: e.target.value })
+          }
+        />
+        <PersonIcon
+          sx={{
+            color: "common.white",
+            position: "absolute",
+            right: 12,
+            top: "50%",
+            transform: "translateY(-50%)",
+          }}
+        />
+      </div>
+
+      <div style={{ position: "relative" }}>
+        <TextField
+          fullWidth
+          size="small"
+          label="Password"
+          type="password"
+          value={state.password}
+          onChange={(e) =>
+            dispatch({ type: "setPassword", payload: e.target.value })
+          }
+        />
+        <LockIcon
+          sx={{
+            color: "common.white",
+            position: "absolute",
+            right: 12,
+            top: "50%",
+            transform: "translateY(-50%)",
+          }}
+        />
+      </div>
+    </FormControl>
   );
 };
 

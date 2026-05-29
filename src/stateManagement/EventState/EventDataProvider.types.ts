@@ -28,4 +28,5 @@ export type Participant = {
   id: number;
   name: string;
   roles: Role[];
+  hasPaid?: boolean;
 };

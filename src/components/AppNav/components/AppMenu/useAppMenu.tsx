@@ -6,6 +6,10 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useEvent } from "../../../../stateManagement/EventState/EventDataProvider";
 
+/**
+ * Custom hook for managing application menu state and actions
+ * @returns {Object} Menu state and handlers (openMenu, openCreateEvent, openParticipants, and action methods)
+ */
 const useAppMenu = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [openCreateEvent, setOpenCreateEvent] = useState(false);
@@ -13,34 +17,42 @@ const useAppMenu = () => {
   const { handleOpenAuthDialog, handleLogout, token, hasRole } = useAuth();
   const { handleFetchParticipants } = useEvent();
 
+  /** Opens/closes the main menu */
   const handleOpenMenu = () => {
     setOpenMenu(true);
   };
 
+  /** Closes the main menu */
   const handleCloseMenu = () => {
     setOpenMenu(false);
   };
 
+  /** Opens create event dialog */
   const handleOpenCreateEvent = useCallback(() => {
     setOpenCreateEvent(true);
   }, []);
 
+  /** Closes create event dialog */
   const handleCloseCreateEvent = useCallback(() => {
     setOpenCreateEvent(false);
   }, []);
 
+  /** Opens participants dialog and fetches participant data */
   const handleOpenParticipants = useCallback(() => {
     setOpenParticipants(true);
     handleFetchParticipants();
   }, [handleFetchParticipants]);
 
+  /** Closes participants dialog */
   const handleCloseParticipants = useCallback(() => {
     setOpenParticipants(false);
   }, []);
 
   /**
-   * Handling of different actions depending on user role and token
-   * @returns speed dial actions for current user
+   * Generates menu actions filtered by user authentication status and role
+   * - Unauthenticated: login only
+   * - ROLE_USER: logout only
+   * - ROLE_ADMIN: create event, participants, logout
    */
   const getActionsDefinition = () => {
     const actions = [
@@ -68,7 +80,7 @@ const useAppMenu = () => {
 
     // Default case for other roles (e.g., admin)
     return actions.filter((action) =>
-      ["Vytvořit událost", "Účastníci", "Odhlásit se"].includes(action.name)
+      ["Vytvořit událost", "Účastníci", "Odhlásit se"].includes(action.name),
     );
   };
 

@@ -7,11 +7,11 @@ import {
 } from "@mui/material";
 import useStyles from "./AppMenu.styles";
 import MenuIcon from "@mui/icons-material/Menu";
-import CreateEvent from "./components/CreateEvent/CreateEvent";
 import AuthDialog from "./components/AuthDialog/AuthDialog";
 import ParticipantsDialog from "./components/ParticipantsDialog/ParticipantsDialog";
 import { useAuth } from "../../../../stateManagement/AuthState/AuthProvider";
 import useAppMenu from "./useAppMenu";
+import CreateEventDialog from "./components/CreateEventDialog/CreateEventDialog";
 
 const AppMenu = () => {
   const classes = useStyles();
@@ -44,7 +44,7 @@ const AppMenu = () => {
                 sx={{ width: 40, height: 40 }}
               />
             ) : (
-              <MenuIcon />
+              <MenuIcon sx={{ color: "text.primary" }} />
             )
           }
           onClose={handleCloseMenu}
@@ -64,9 +64,9 @@ const AppMenu = () => {
         </SpeedDial>
       </Box>
       <AuthDialog />
-      <CreateEvent
-        openCreateEvent={openCreateEvent}
-        handleCloseCreateEvent={handleCloseCreateEvent}
+      <CreateEventDialog
+        openCreateEventDialog={openCreateEvent}
+        handleCloseCreateEventDialog={handleCloseCreateEvent}
       />
       <ParticipantsDialog
         openParticipants={openParticipants}
